@@ -1,6 +1,7 @@
 import random
 import csv
 from datetime import datetime, timedelta
+import os
 
 possible_brands = []
 possible_shopname = []
@@ -75,7 +76,7 @@ def generate_coordinates():
     coord_N = round(coord_N, 8)
     coord_E = round(coord_E, 8)
 
-    return [coord_N, coord_E]        
+    return (str(coord_N) + ' ; ' + str(coord_E))
 
 def generate_random_datetime(min_time="09:00", max_time="21:00"):
     # Задаем диапазон дат: начальная и конечная
@@ -119,15 +120,43 @@ def generate_one_output():
     max_time =  str(random.randint(19,22))+':00'
     out.append(generate_random_datetime(min_time=min_time,max_time=max_time))
     out.append(item)
-    out.append(random.choice(possible_brands))
-    out.append(random.randint(1000000000000000,9999999999999999)) # TODO : change bank card algorithm
+    out.append(random.choice(possible_brands)) # TODO : add 500 brands
+    out.append(random.randint(1000000000000000,9999999999999999)) # TODO : change bank card algorithm with no more than 5 reps
     amount = random.randint(1,7)
     out.append(amount)
     out.append(random.randint(min_pr,max_pr) * amount)
     return out
 
-
 def write_into_csv_file(sample):
-    with open('result.csv',mode='w') as out_csv:
-        
+    # Названия столбцов
+    headers = ['Магазин', 'Координаты', 'Дата и время', 'Товар', 'Производитель', 'Номер карты', 'Количество', 'Цена']
     
+    # Проверяем, существует ли файл result.csv
+    file_exists = os.path.isfile('result.csv')
+    
+    # Открываем CSV файл для записи или создания
+    with open('result.csv', mode='a', newline='', encoding='utf-8') as out_csv:
+        # Создаем объект writer
+        writer = csv.writer(out_csv, delimiter=',')
+        
+        # Если файл не существует, записываем заголовки
+        if not file_exists:
+            writer.writerow(headers)
+        
+        # Записываем переданный массив данных
+        writer.writerow(sample)
+
+def generate_dataset(amount=5, category_type=1): # TODO : check for unique values
+    generate_possible_variants(category_type)
+    for i in range(amount):
+        if(i % 10000 == 0):
+            print(f'working, {round(((i/amount)*100),1)}%')
+        out = generate_one_output()
+        write_into_csv_file(out)
+
+
+if __name__ == '__main__':
+    print("Добро пожаловать в программу генерации синтетических данных")
+    amount = int(input('Введите нужное количество записей в базу данных: '))
+    generate_dataset(amount=amount)
+    print("Готово, проверьте файл result.csv")
