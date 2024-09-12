@@ -1,0 +1,186 @@
+product_type	category	min_price	max_price
+electronics	Ноутбук	500	3000
+electronics	Смартфон	100	3000
+electronics	Планшет	90	2000
+electronics	Смарт-часы	20	1000
+electronics	Фитнес-браслет	30	300
+electronics	Настольные компьютер	600	4000
+electronics	Монитор	100	1500
+electronics	Игровая приставка	200	600
+electronics	Телевизор	150	5000
+electronics	Проектор	300	2000
+electronics	Беспроводные наушники	50	300
+electronics	Проводные наушники	20	150
+electronics	Портативная колонка	30	200
+electronics	Саундбар	100	800
+electronics	Внешний жесткий диск	60	300
+electronics	SSD-диск	80	500
+electronics	USB-флешка	10	100
+electronics	Видеокарта	150	1500
+electronics	Материнские плата	100	400
+electronics	Процессор	200	1000
+electronics	Оперативная память (RAM)	60	500
+electronics	Корпус для компьютера	50	150
+electronics	Блок питания	60	200
+electronics	Система охлаждения (вентилятор и кулеры)	20	150
+electronics	Мышь	10	100
+electronics	Клавиатура	20	150
+electronics	Игровая мышь	30	150
+electronics	Игровая клавиатура	50	200
+electronics	Веб-камера	20	150
+electronics	Микрофон	30	200
+electronics	Планшет для рисования (графические планшеты)	70	500
+electronics	Принтер	50	300
+electronics	Сканер	60	250
+electronics	Многофункциональные устройства (МФУ)	100	400
+electronics	3D-принтер	200	2500
+electronics	Маршрутизатор (роутеры)	30	200
+electronics	Модем	20	100
+electronics	Сетевой адаптер	10	60
+electronics	Wi-Fi усилители сигнала	20	100
+electronics	Роутер для умного дома	50	250
+electronics	Коммутатор	100	600
+electronics	Ретранслятор	30	200
+electronics	Сетевая карта	20	150
+electronics	Блоки бесперебойного питания (UPS)	80	300
+electronics	Картридер	15	60
+electronics	Bluetooth-адаптер	10	50
+electronics	Док-станция	30	150
+electronics	USB-хаб	10	40
+electronics	Видеозахватная карта	50	250
+electronics	Графические процессор (GPU)	200	1500
+electronics	Внутренние жесткие диски (HDD)	50	200
+electronics	Карта памяти (SD, microSD)	15	80
+electronics	Зарядные устройства	20	100
+electronics	Батарейки	5	30
+electronics	Солнечные зарядные устройства	30	150
+electronics	Пауэрбанк (портативные аккумуляторы)	20	100
+electronics	Электронные книги (e-readers)	80	300
+electronics	VR-очки (виртуальная реальность)	200	800
+electronics	AR-очки (дополненная реальность)	300	1500
+electronics	Умная колонка	50	250
+electronics	Умная розетка	20	100
+electronics	Умная лампа	15	80
+electronics	Умный термостат	50	200
+electronics	Робот-пылесос	150	800
+electronics	Дрон (квадрокоптер)	100	2000
+electronics	Экшн-камера	100	600
+electronics	Зеркальная фотокамера (DSLR)	500	3000
+electronics	Беззеркальная камера	400	2500
+electronics	Объектив	200	1500
+electronics	Фотовспышка	100	600
+electronics	Штатив	20	150
+electronics	Карта видеозахвата	50	250
+electronics	Мультимедийный плеер	50	300
+electronics	Цифровой ресивер	70	400
+electronics	Медиаплеер для телевидения	60	250
+electronics	Автомобильный видеорегистратор	50	250
+electronics	GPS-навигатор	80	300
+electronics	Автомобильное зарядные устройства	20	100
+electronics	Автомобильный радар-детектор	50	250
+electronics	Автомобильная магнитол	50	300
+electronics	Автомобильные колонки	60	300
+electronics	Автомобильный сабвуфер	100	500
+electronics	Спутниковые телефон	200	1500
+electronics	Пульт дистанционного управления	15	70
+electronics	Проекционный экран	80	400
+electronics	Подставка для телевизоров и мониторов	20	150
+electronics	Кабель HDMI	10	50
+electronics	Кабель DisplayPort	10	60
+electronics	USB-кабель	5	30
+electronics	Ethernet-кабель	10	50
+electronics	Аудиокабель	10	60
+electronics	Оптоволоконные кабель	30	150
+electronics	Разветвитель и адаптер	15	70
+electronics	Чехол для ноутбука	20	100
+electronics	Сумка для ноутбука	30	150
+electronics	Рюкзак для техники	40	200
+electronics	Подставка и охлаждающая система для ноутбуков	20	100
+clothes	Футболка	10	50
+clothes	Рубашка	20	100
+clothes	Блузка	15	80
+clothes	Свитер	25	120
+clothes	Кардиган	30	130
+clothes	Жакет	40	150
+clothes	Пиджак	50	200
+clothes	Куртка	60	250
+clothes	Пальто	80	300
+clothes	Шуба	150	800
+clothes	Плащь	60	250
+clothes	Кожаная куртка	100	400
+clothes	Спортивный костюм	40	150
+clothes	Джинсы	30	120
+clothes	Штаны	25	100
+clothes	Шорты	15	60
+clothes	Юбка	20	80
+clothes	Платье	30	150
+clothes	Комбинезон	40	150
+clothes	Купальник	20	100
+clothes	Термобелье	30	120
+clothes	Носки	5	20
+clothes	Колготки	10	30
+clothes	Гольфы	10	40
+clothes	Перчатки	15	50
+clothes	Шарф	20	70
+clothes	Шапка	15	50
+clothes	Берет	20	60
+clothes	Шляпа	20	80
+clothes	Очки солнцезащитные	10	100
+clothes	Очки корригирующие	50	300
+clothes	Сумка	30	150
+clothes	Рюкзак	40	200
+clothes	Кошельки	20	100
+clothes	Чемодан	80	300
+clothes	Дорожная сумка	30	150
+clothes	Бижутерия	10	100
+clothes	Ювелирные украшения	50	1000
+clothes	Браслет	20	100
+clothes	Ожерелье	30	150
+clothes	Серьги	20	120
+clothes	Кольцо	30	150
+clothes	Запонки	20	100
+clothes	Часы	30	500
+clothes	Ремни	20	80
+clothes	Обувь	30	300
+clothes	Туфли	40	150
+clothes	Сапоги	50	250
+clothes	Ботинки	40	200
+clothes	Кроссовки	30	150
+clothes	Сандалии	20	100
+clothes	Балетки	25	100
+clothes	Угги	40	150
+clothes	Шлепанцы	15	50
+clothes	Мокасины	30	120
+clothes	Тапочки	15	60
+clothes	Спортивная обувь	40	150
+clothes	Кроссовки для бега	50	200
+clothes	Кроссовки для тренажерного зала	50	180
+clothes	Кроссовки для баскетбола	60	250
+clothes	Одеяла	30	120
+clothes	Подушки	20	80
+clothes	Постельное белье	40	150
+clothes	Халат	30	120
+clothes	Пижам	20	80
+clothes	Роба	25	100
+clothes	Купальное полотенца	10	50
+clothes	Аксессуары для волос	5	30
+clothes	Заколки	5	20
+clothes	Резинки	2	10
+clothes	Скраб и маски для лица	10	50
+clothes	Крем и лосьон	5	30
+clothes	Дезодорант	5	20
+clothes	Парфюмерия	20	150
+clothes	Косметика	10	80
+clothes	Макияжные средства	10	60
+clothes	Сумки через плечо	20	100
+clothes	Клатчи	30	120
+clothes	Тренчкот	50	200
+clothes	Смокинги	100	500
+clothes	Поло	20	80
+clothes	Капюшон	15	60
+clothes	Штан для дома	25	100
+clothes	Куртка для дождя	30	120
+clothes	Сноубордические костюм	100	500
+clothes	Ски-куртка	80	300
+clothes	Ремни для платьев	15	60
+clothes	Теплые носки	10	30
