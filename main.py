@@ -132,10 +132,10 @@ def write_into_csv_file(sample):
     headers = ['Магазин', 'Координаты', 'Дата и время', 'Товар', 'Производитель', 'Номер карты', 'Количество', 'Цена']
     
     # Проверяем, существует ли файл result.csv
-    file_exists = os.path.isfile('result.csv')
+    file_exists = os.path.isfile('output/result.csv')
     
     # Открываем CSV файл для записи или создания
-    with open('result.csv', mode='a', newline='', encoding='utf-8') as out_csv:
+    with open('output/result.csv', mode='a', newline='', encoding='utf-8') as out_csv:
         # Создаем объект writer
         writer = csv.writer(out_csv, delimiter=',')
         
@@ -156,6 +156,7 @@ def generate_dataset(amount=5, category_type=1): # TODO : check for unique value
 
 
 if __name__ == '__main__':
+
     print("Добро пожаловать в программу генерации синтетических данных")
     amount = int(input('Введите нужное количество записей в базу данных: '))
     generate_dataset(amount=amount)
