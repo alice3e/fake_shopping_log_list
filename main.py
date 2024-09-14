@@ -13,6 +13,8 @@ def generate_possible_variants(category=2):
             output = ['electronics'] # product_type, shop_name, category, brand, price
         case 2: #clothes
             output = ['clothes']
+        case 3: #food
+            output = ['food']
         case 3: #all types
             output = ['all_types']
     
@@ -45,9 +47,10 @@ def generate_possible_variants(category=2):
                 pass
             else:
                 product_type,item_type,min_price,max_price = rows.split('\t')
+                print(product_type,item_type,min_price,max_price)
                 max_price = max_price[:-1]
-                min_price = int(min_price) * 60
-                max_price = int(max_price) * 60
+                min_price = float(min_price) * 43
+                max_price = float(max_price) * 43
                 if(product_type==output[0] or output[0]=='all_types'):
                     possible_item_and_price.append([item_type,min_price,max_price])
             line_count += 1
@@ -116,6 +119,7 @@ def generate_one_output():
     out.append(random.choice(possible_shopname)) # brand
     out.append(generate_coordinates()) # coordinates
     item,min_pr,max_pr = random.choice(possible_item_and_price)
+    print(item,min_pr,max_pr)
     min_time = '0'+str(random.randint(7,9))+':00'
     max_time =  str(random.randint(19,22))+':00'
     out.append(generate_random_datetime(min_time=min_time,max_time=max_time))
@@ -159,5 +163,5 @@ if __name__ == '__main__':
 
     print("Добро пожаловать в программу генерации синтетических данных")
     amount = int(input('Введите нужное количество записей в базу данных: '))
-    generate_dataset(amount=amount)
+    generate_dataset(amount=amount,category_type=3)
     print("Готово, проверьте файл result.csv")
