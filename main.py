@@ -6,8 +6,9 @@ import os
 possible_brands = []
 possible_shopname = []
 possible_item_and_price = []
+possible_bank_system = []
 
-def generate_possible_variants(category=2):
+def generate_possible_variants(category):
     match category:
         case 1: #electronics
             output = ['electronics'] # product_type, shop_name, category, brand, price
@@ -15,45 +16,58 @@ def generate_possible_variants(category=2):
             output = ['clothes']
         case 3: #food
             output = ['food']
-        case 3: #all types
-            output = ['all_types']
-    
-    with open('data/shop_names.csv',mode='r') as shops_csv:
-        line_count = 0
-        for rows in shops_csv:
-            if line_count==0 or rows[0] =='\t':
-                pass
-            else:
-                shop_name,product_type, = rows.split('\t')
-                product_type = product_type[:-1]
-                if(product_type==output[0] or output[0]=='all_types'):
-                    possible_shopname.append(shop_name)
-            line_count += 1
-    with open('data/brands.csv',mode='r') as brands_csv:
-        line_count = 0
-        for rows in brands_csv:
-            if line_count==0 or rows[0] =='\t':
-                pass
-            else:
-                product_type,brand_name = rows.split('\t')
-                brand_name = brand_name[:-1]
-                if(product_type==output[0] or output[0]=='all_types'):
-                    possible_brands.append(brand_name)
-            line_count += 1
-    with open('data/products.csv',mode='r') as item_csv:
-        line_count = 0
-        for rows in item_csv:
-            if line_count==0 or rows[0] =='\t':
-                pass
-            else:
-                product_type,item_type,min_price,max_price = rows.split('\t')
-                print(product_type,item_type,min_price,max_price)
-                max_price = max_price[:-1]
-                min_price = float(min_price) * 43
-                max_price = float(max_price) * 43
-                if(product_type==output[0] or output[0]=='all_types'):
-                    possible_item_and_price.append([item_type,min_price,max_price])
-            line_count += 1
+    try:
+        with open('data/shop_names.csv',mode='r') as shops_csv:
+            line_count = 0
+            for rows in shops_csv:
+                if line_count==0 or rows[0] =='\t':
+                    pass
+                else:
+                    shop_name,product_type, = rows.split('\t')
+                    product_type = product_type[:-1]
+                    if(product_type==output[0] or output[0]=='all_types'):
+                        possible_shopname.append(shop_name)
+                line_count += 1
+    except:
+        print("No shop_names.csv found, exiting..,")
+        exit()
+    try:
+        with open('data/brands.csv',mode='r') as brands_csv:
+            line_count = 0
+            for rows in brands_csv:
+                if line_count==0 or rows[0] =='\t':
+                    pass
+                else:
+                    product_type,brand_name = rows.split('\t')
+                    brand_name = brand_name[:-1]
+                    if(product_type==output[0] or output[0]=='all_types'):
+                        possible_brands.append(brand_name)
+                line_count += 1
+    except:
+        print("No brands.csv found, exiting..,")
+        exit()
+    try:
+        with open('data/products.csv',mode='r') as item_csv:
+            line_count = 0
+            for rows in item_csv:
+                if line_count==0 or rows[0] =='\t':
+                    pass
+                else:
+                    product_type,item_type,min_price,max_price = rows.split('\t')
+                    print(product_type,item_type,min_price,max_price)
+                    #max_price = max_price[:-1]
+                    try:
+                        min_price = int(float(min_price) * 43)
+                        max_price = int(float(max_price) * 43)
+                    except:
+                        print("Problems with price generation in generate_possible_variants")
+                        exit()
+                    if(product_type==output[0] or output[0]=='all_types'):
+                        possible_item_and_price.append([item_type,min_price,max_price])
+                line_count += 1
+    except:
+        print("No products.csv found, exiting..,")
+        exit()
             
 def dms_to_decimal(deg, minutes, sec, direction):
     decimal = deg + minutes / 60 + sec / 3600
@@ -112,6 +126,34 @@ def generate_random_datetime(min_time="09:00", max_time="21:00"):
     # Возвращаем дату и время в формате ISO 8601: YYYY-MM-DDTHH:MM
     return random_datetime.strftime("%Y-%m-%dT%H:%M")
 
+def generate_10_digits():
+    return random.randint(1000000000,9999999999)
+
+def generate_card_dataset():
+    with open('data/cards.csv',mode='r') as cards_csv:
+        line_count = 0
+        for rows in cards_csv:
+                if line_count==0 or rows[0] =='\t':
+                    pass
+                else:
+                    bin, country, bank_name, system_name, card_type, tariff = rows.split(',')
+                    possible_bank_system.append([bin,bank_name,system_name])
+                line_count += 1
+                    
+def generate_one_card(bank='random', system='random'):
+    cards = possible_bank_system
+    
+        # Фильтруем карты по банку
+    filtered_cards = [card for card in cards if (bank == 'random' or card[1] == bank) and (system == 'random' or card[2] == system)]
+    
+    # Если есть подходящие карты, возвращаем случайную
+    if filtered_cards:
+        chosen_card_start = random.choice(filtered_cards)
+        chosen_BIN = str(chosen_card_start[0])
+        return (chosen_BIN[:-1]+str(generate_10_digits()))
+    else:
+        return None
+
 def generate_one_output():
     #['спортмастер', [59.86569725, 30.24353742], '2024-08-28T15:44', 'Балетки', 'Prada', 1373173076729863, 6, 3871]
     # brand_name    coordinates                   time              item_type   brand_name  unique_id   amount  price
@@ -124,8 +166,8 @@ def generate_one_output():
     max_time =  str(random.randint(19,22))+':00'
     out.append(generate_random_datetime(min_time=min_time,max_time=max_time))
     out.append(item)
-    out.append(random.choice(possible_brands)) # TODO : add 500 brands
-    out.append(random.randint(1000000000000000,9999999999999999)) # TODO : change bank card algorithm with no more than 5 reps
+    out.append(random.choice(possible_brands))
+    out.append(generate_one_card())
     amount = random.randint(1,7)
     out.append(amount)
     out.append(random.randint(min_pr,max_pr) * amount)
@@ -150,8 +192,13 @@ def write_into_csv_file(sample):
         # Записываем переданный массив данных
         writer.writerow(sample)
 
-def generate_dataset(amount=5, category_type=1): # TODO : check for unique values
-    generate_possible_variants(category_type)
+def generate_dataset(amount=5, category_type=1):
+    if(category_type==4):
+        for i in range(1,4):
+            generate_possible_variants(i)
+    else:
+        generate_possible_variants(category_type)
+    generate_card_dataset()
     for i in range(amount):
         if(i % 10000 == 0):
             print(f'working, {round(((i/amount)*100),1)}%')
@@ -163,5 +210,6 @@ if __name__ == '__main__':
 
     print("Добро пожаловать в программу генерации синтетических данных")
     amount = int(input('Введите нужное количество записей в базу данных: '))
-    generate_dataset(amount=amount,category_type=3)
+    grand_category_type = int(input('Выберите какой категории вы хотите данные(1 - электроника, 2 - одежда, 3- еда, 4 - все перечисленное): '))
+    generate_dataset(amount=amount,category_type=grand_category_type)
     print("Готово, проверьте файл result.csv")
