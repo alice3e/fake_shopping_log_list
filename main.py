@@ -12,80 +12,22 @@ possible_shopname = []
 possible_item_and_price = []
 possible_bank_system = []
 bank_names = ['GAZPROMBANK','MTS BANK','SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK']
-painment_system_names = ['MIR','VISA','MASTERCARD','MAESTRO','AMERICAN EXPRESS']
+painment_system_names = ['MIR','VISA','MASTERCARD']
 
-def generate_possible_variants(category):
-    match category:
-        case 1: #electronics
-            output = ['electronics'] # product_type, shop_name, category, brand, price
-        case 2: #clothes
-            output = ['clothes']
-        case 3: #food
-            output = ['food']
-    try:
-        with open('data/shop_names.csv',mode='r') as shops_csv:
-            line_count = 0
-            for rows in shops_csv:
-                if line_count==0 or rows[0] =='\t':
-                    pass
-                else:
-                    shop_name,product_type, = rows.split('\t')
-                    product_type = product_type[:-1]
-                    if(product_type==output[0] or output[0]=='all_types'):
-                        possible_shopname.append(shop_name)
-                line_count += 1
-    except:
-        print("No shop_names.csv found, exiting..,")
-        exit()
-    try:
-        with open('data/brands.csv',mode='r') as brands_csv:
-            line_count = 0
-            for rows in brands_csv:
-                if line_count==0 or rows[0] =='\t':
-                    pass
-                else:
-                    product_type,brand_name = rows.split('\t')
-                    brand_name = brand_name[:-1]
-                    if(product_type==output[0] or output[0]=='all_types'):
-                        possible_brands.append(brand_name)
-                line_count += 1
-    except:
-        print("No brands.csv found, exiting..,")
-        exit()
-    try:
-        with open('data/products.csv',mode='r') as item_csv:
-            line_count = 0
-            for rows in item_csv:
-                if line_count==0 or rows[0] =='\t':
-                    pass
-                else:
-                    product_type,item_type,min_price,max_price = rows.split('\t')
-                    #max_price = max_price[:-1]
-                    try:
-                        min_price = int(float(min_price) * 43)
-                        max_price = int(float(max_price) * 43)
-                    except:
-                        print("Problems with price generation in generate_possible_variants")
-                        exit()
-                    if(product_type==output[0] or output[0]=='all_types'):
-                        possible_item_and_price.append([item_type,min_price,max_price])
-                line_count += 1
-    except:
-        print("No products.csv found, exiting..,")
-        exit()
-            
+
 def dms_to_decimal(deg, minutes, sec, direction):
     decimal = deg + minutes / 60 + sec / 3600
     if direction in ['S', 'W']:
         decimal = -decimal
     return decimal
 
-# точки для генерации координат
-A = [dms_to_decimal(59, 57, 28.1, 'N'), dms_to_decimal(30, 18, 30.5, 'E')]
-B = [dms_to_decimal(59, 50, 17.6, 'N'), dms_to_decimal(30, 11, 58.1, 'E')]
-C = [dms_to_decimal(59, 53, 32.8, 'N'), dms_to_decimal(30, 31, 0.9, 'E')]
+
 
 def generate_coordinates():
+    # точки для генерации координат
+    A = [dms_to_decimal(59, 57, 28.1, 'N'), dms_to_decimal(30, 18, 30.5, 'E')]
+    B = [dms_to_decimal(59, 50, 17.6, 'N'), dms_to_decimal(30, 11, 58.1, 'E')]
+    C = [dms_to_decimal(59, 53, 32.8, 'N'), dms_to_decimal(30, 31, 0.9, 'E')]
     r1 = random.random()
     r2 = random.random()
     
@@ -99,6 +41,74 @@ def generate_coordinates():
     coord_E = round(coord_E, 8)
 
     return (str(coord_N) + ' ; ' + str(coord_E))
+
+def generate_possible_variants(category):
+    match category:
+        case 1:  # electronics
+            output = ['electronics']  # product_type, shop_name, category, brand, price
+        case 2:  # clothes
+            output = ['clothes']
+        case 3:  # food
+            output = ['food']
+        case _:
+            output = ['all_types']  # Default case for unknown category
+
+    # Use a more detailed exception handling to capture specific issues
+    try:
+        with open('data/shop_names.csv', mode='r', newline='') as shops_csv:
+            reader = csv.reader(shops_csv, delimiter='\t')
+            next(reader)  # Skip header
+            for rows in reader:
+                shop_name, product_type = rows
+                if product_type == output[0] or output[0] == 'all_types':
+                    possible_shopname.append(shop_name)
+    except FileNotFoundError:
+        print("No shop_names.csv found, exiting..")
+        exit()
+
+    try:
+        with open('data/brands.csv', mode='r', newline='') as brands_csv:
+            reader = csv.reader(brands_csv, delimiter='\t')
+            next(reader)  # Skip header
+            for rows in reader:
+                product_type, brand_name = rows
+                if product_type == output[0] or output[0] == 'all_types':
+                    possible_brands.append(brand_name)
+    except FileNotFoundError:
+        print("No brands.csv found, exiting..")
+        exit()
+
+    try:
+        with open('data/products.csv', mode='r', newline='') as item_csv:
+            reader = csv.reader(item_csv, delimiter='\t')
+            next(reader)  # Skip header
+            for rows in reader:
+                product_type, item_type, min_price, max_price = rows
+                try:
+                    min_price = int(float(min_price) * 43)
+                    max_price = int(float(max_price) * 43)
+                except ValueError:
+                    print("Problems with price generation in generate_possible_variants")
+                    exit()
+                if product_type == output[0] or output[0] == 'all_types':
+                    possible_item_and_price.append([item_type, min_price, max_price])
+    except FileNotFoundError:
+        print("No products.csv found, exiting..")
+        exit()
+
+def generate_card_dataset():
+    try:
+        with open('data/cards.csv', mode='r', newline='') as cards_csv:
+            reader = csv.reader(cards_csv, delimiter=',')
+            next(reader)  # Skip header
+            for rows in reader:
+                bin, country, bank_name, system_name, card_type, tariff = rows
+                possible_bank_system.append([bin, bank_name, system_name])
+    except FileNotFoundError:
+        print("No cards.csv found, exiting..")
+        exit()
+            
+
 
 def generate_random_datetime(min_time="09:00", max_time="21:00"):
     # Задаем диапазон дат: начальная и конечная
@@ -131,33 +141,21 @@ def generate_random_datetime(min_time="09:00", max_time="21:00"):
     # Возвращаем дату и время в формате ISO 8601: YYYY-MM-DDTHH:MM
     return random_datetime.strftime("%Y-%m-%dT%H:%M")
 
-def generate_10_digits():
-    return random.randint(1000000000,9999999999)
-
-def generate_card_dataset():
-    with open('data/cards.csv',mode='r') as cards_csv:
-        line_count = 0
-        for rows in cards_csv:
-                if line_count==0 or rows[0] =='\t':
-                    pass
-                else:
-                    bin, country, bank_name, system_name, card_type, tariff = rows.split(',')
-                    possible_bank_system.append([bin,bank_name,system_name])
-                line_count += 1
-                    
 def generate_one_card(bank='random', system='random'):
     cards = possible_bank_system
-    
-        # Фильтруем карты по банку
+    # Filter cards by bank and payment system
     filtered_cards = [card for card in cards if (bank == 'random' or card[1] == bank) and (system == 'random' or card[2] == system)]
     
-    # Если есть подходящие карты, возвращаем случайную
+    # Check if there are any matching cards
     if filtered_cards:
         chosen_card_start = random.choice(filtered_cards)
         chosen_BIN = str(chosen_card_start[0])
-        return (chosen_BIN[:-1]+str(generate_10_digits()))
+        return chosen_BIN[:-1] + str(random.randint(1000000000,9999999999))
     else:
-        return None
+        print(possible_bank_system)
+        print(bank,system)
+        print("No matching card found")
+        exit()
     
 def possibility_generator(poss_vec, cat_vec):
     probabilities = poss_vec
@@ -234,6 +232,7 @@ if __name__ == '__main__':
     # Labels
     lbl = Label(window, text="Добро пожаловать!", font='Arial 16 bold')  
     lbl.place(relx=0.5, rely=0.1, anchor=CENTER)
+    
 
     lbl2 = Label(window, text="Перед началом работы выберите необходимые настройки:", font='Arial 12')  
     lbl2.place(relx=0.5, rely=0.17, anchor=CENTER)
@@ -244,45 +243,29 @@ if __name__ == '__main__':
 
     #['MIR','VISA','MASTERCARD','MAESTRO','AMERICAN EXPRESS']
     t1 = Label(window, text="MIR, %")
-    t1.place(relx=0.045, rely=0.3)
+    t1.place(relx=0.245, rely=0.3)
 
     t2 = Label(window, text="VISA, %")
-    t2.place(relx=0.236, rely=0.3)
+    t2.place(relx=0.436, rely=0.3)
 
     t3 = Label(window, text="MASTERCARD, %")
-    t3.place(relx=0.427, rely=0.3)
+    t3.place(relx=0.627, rely=0.3)
     
-    t4 = Label(window, text="MAESTRO, %")
-    t4.place(relx=0.618, rely=0.3)
-    
-    t5 = Label(window, text="AMERICAN EXPRESS, %")
-    t5.place(relx=0.809, rely=0.3)
-
     combo1 = Combobox(window, width=10)  
     combo1['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
     combo1.current(5) 
-    combo1.place(relx=0.045, rely=0.37)
+    combo1.place(relx=0.245, rely=0.37)
 
     combo2 = Combobox(window, width=10)  
     combo2['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
-    combo2.current(0) 
-    combo2.place(relx=0.236, rely=0.37)
+    combo2.current(1) 
+    combo2.place(relx=0.436, rely=0.37)
 
     combo3 = Combobox(window, width=10)  
     combo3['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
-    combo3.current(0) 
-    combo3.place(relx=0.427, rely=0.37)
-    
-    combo4 = Combobox(window, width=10)  
-    combo4['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
-    combo4.current(0) 
-    combo4.place(relx=0.618, rely=0.37)
-    
-    combo5 = Combobox(window, width=10)  
-    combo5['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
-    combo5.current(0) 
-    combo5.place(relx=0.809, rely=0.37)
-
+    combo3.current(1) 
+    combo3.place(relx=0.627, rely=0.37)
+        
     # Bank processing:
     lbl4 = Label(window, text="Банк:", font='Arial 11')
     lbl4.place(relx=0.5, rely=0.5, anchor=CENTER)
@@ -347,7 +330,7 @@ if __name__ == '__main__':
     combo11.place(relx=0.5, rely=0.85)
     
     def on_button_click():
-        possibility_painment_sys = [float(combo1.get())/100,float(combo2.get())/100,float(combo3.get())/100,float(combo4.get())/100,float(combo5.get())/100]
+        possibility_painment_sys = [float(combo1.get())/100,float(combo2.get())/100,float(combo3.get())/100]
         possibility_banks = [float(combo6.get())/100,float(combo7.get())/100,float(combo8.get())/100,float(combo9.get())/100,float(combo10.get())/100]
         category_chosen = combo11.get()
         category_id = {
