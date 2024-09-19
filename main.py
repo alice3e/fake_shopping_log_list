@@ -2,11 +2,17 @@ import random
 import csv
 from datetime import datetime, timedelta
 import os
+from tkinter import *
+from tkinter import messagebox
+from tkinter.ttk import Combobox
+import select
 
 possible_brands = []
 possible_shopname = []
 possible_item_and_price = []
 possible_bank_system = []
+bank_names = ['GAZPROMBANK','MTS BANK','SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK']
+painment_system_names = ['MIR','VISA','MASTERCARD','MAESTRO','AMERICAN EXPRESS']
 
 def generate_possible_variants(category):
     match category:
@@ -54,7 +60,6 @@ def generate_possible_variants(category):
                     pass
                 else:
                     product_type,item_type,min_price,max_price = rows.split('\t')
-                    print(product_type,item_type,min_price,max_price)
                     #max_price = max_price[:-1]
                     try:
                         min_price = int(float(min_price) * 43)
@@ -153,22 +158,24 @@ def generate_one_card(bank='random', system='random'):
         return (chosen_BIN[:-1]+str(generate_10_digits()))
     else:
         return None
+    
+def possibility_generator(poss_vec, cat_vec):
+    probabilities = poss_vec
+    return random.choices(cat_vec, probabilities)[0]
 
-def generate_one_output():
-    #['спортмастер', [59.86569725, 30.24353742], '2024-08-28T15:44', 'Балетки', 'Prada', 1373173076729863, 6, 3871]
-    # brand_name    coordinates                   time              item_type   brand_name  unique_id   amount  price
+def generate_one_output(poss_bank_vec,poss_painment_vec):
     out = []
     out.append(random.choice(possible_shopname)) # brand
     out.append(generate_coordinates()) # coordinates
-    item,min_pr,max_pr = random.choice(possible_item_and_price)
-    print(item,min_pr,max_pr)
-    min_time = '0'+str(random.randint(7,9))+':00'
-    max_time =  str(random.randint(19,22))+':00'
-    out.append(generate_random_datetime(min_time=min_time,max_time=max_time))
-    out.append(item)
+    item,min_pr,max_pr = random.choice(possible_item_and_price) # price
+    min_time = '0'+str(random.randint(7,9))+':00' # time
+    max_time =  str(random.randint(19,22))+':00' # time
+    out.append(generate_random_datetime(min_time=min_time,max_time=max_time)) # time
+    out.append(item) 
     out.append(random.choice(possible_brands))
-    out.append(generate_one_card())
-    amount = random.randint(1,7)
+    bank,painment_sys = possibility_generator(poss_bank_vec, bank_names),possibility_generator(poss_painment_vec, painment_system_names)
+    out.append(generate_one_card(bank=bank,system=painment_sys)) # card generation
+    amount = random.randint(1,7) # amount of items
     out.append(amount)
     out.append(random.randint(min_pr,max_pr) * amount)
     return out
@@ -192,7 +199,7 @@ def write_into_csv_file(sample):
         # Записываем переданный массив данных
         writer.writerow(sample)
 
-def generate_dataset(amount=5, category_type=1):
+def generate_dataset(amount=50, category_type=1, possibility_banks=[0.5,0.1,0.1,0.1,0.1,0.1], possibility_painment_sys=[0.5,0.1,0.1,0.1,0.1,0.1]):
     if(category_type==4):
         for i in range(1,4):
             generate_possible_variants(i)
@@ -202,14 +209,157 @@ def generate_dataset(amount=5, category_type=1):
     for i in range(amount):
         if(i % 10000 == 0):
             print(f'working, {round(((i/amount)*100),1)}%')
-        out = generate_one_output()
+        out = generate_one_output(poss_bank_vec=possibility_banks,poss_painment_vec=possibility_painment_sys)
         write_into_csv_file(out)
+
+def clicked(possibility_banks,possibility_painment_sys,category_type):
+    try:
+        amount = int(txt.get())
+    except:
+        amount = 1000
+    if ((sum(possibility_banks)) != 1.0) or (sum(possibility_painment_sys) != 1.0):
+        messagebox.showinfo('Ошибка', 'Сумма в процентах не равна 100')    
+    elif(amount <= 0):
+        messagebox.showinfo('Ошибка', 'Указано неправильное количество строк')    
+    else:
+        generate_dataset(amount=amount, category_type=category_type, possibility_banks=possibility_banks, possibility_painment_sys=possibility_painment_sys)
+        messagebox.showinfo('Готово', 'Создание таблицы завершено')
 
 
 if __name__ == '__main__':
+    window = Tk()
+    window.title("Конструктор синтетических данных")
+    window.geometry('900x600')
 
-    print("Добро пожаловать в программу генерации синтетических данных")
-    amount = int(input('Введите нужное количество записей в базу данных: '))
-    grand_category_type = int(input('Выберите какой категории вы хотите данные(1 - электроника, 2 - одежда, 3- еда, 4 - все перечисленное): '))
-    generate_dataset(amount=amount,category_type=grand_category_type)
-    print("Готово, проверьте файл result.csv")
+    # Labels
+    lbl = Label(window, text="Добро пожаловать!", font='Arial 16 bold')  
+    lbl.place(relx=0.5, rely=0.1, anchor=CENTER)
+
+    lbl2 = Label(window, text="Перед началом работы выберите необходимые настройки:", font='Arial 12')  
+    lbl2.place(relx=0.5, rely=0.17, anchor=CENTER)
+
+    # Payment system processing:
+    lbl3 = Label(window, text="Платежная система:", font='Arial 11')
+    lbl3.place(relx=0.5, rely=0.25, anchor=CENTER)
+
+    #['MIR','VISA','MASTERCARD','MAESTRO','AMERICAN EXPRESS']
+    t1 = Label(window, text="MIR, %")
+    t1.place(relx=0.045, rely=0.3)
+
+    t2 = Label(window, text="VISA, %")
+    t2.place(relx=0.236, rely=0.3)
+
+    t3 = Label(window, text="MASTERCARD, %")
+    t3.place(relx=0.427, rely=0.3)
+    
+    t4 = Label(window, text="MAESTRO, %")
+    t4.place(relx=0.618, rely=0.3)
+    
+    t5 = Label(window, text="AMERICAN EXPRESS, %")
+    t5.place(relx=0.809, rely=0.3)
+
+    combo1 = Combobox(window, width=10)  
+    combo1['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
+    combo1.current(5) 
+    combo1.place(relx=0.045, rely=0.37)
+
+    combo2 = Combobox(window, width=10)  
+    combo2['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
+    combo2.current(0) 
+    combo2.place(relx=0.236, rely=0.37)
+
+    combo3 = Combobox(window, width=10)  
+    combo3['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
+    combo3.current(0) 
+    combo3.place(relx=0.427, rely=0.37)
+    
+    combo4 = Combobox(window, width=10)  
+    combo4['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
+    combo4.current(0) 
+    combo4.place(relx=0.618, rely=0.37)
+    
+    combo5 = Combobox(window, width=10)  
+    combo5['values'] = (10, 20, 30, 40, 50, 60, 70, 80)  
+    combo5.current(0) 
+    combo5.place(relx=0.809, rely=0.37)
+
+    # Bank processing:
+    lbl4 = Label(window, text="Банк:", font='Arial 11')
+    lbl4.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+    #['GAZPROMBANK','MTS BANK','RENAISSANCE CREDIT','SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK']
+    t6 = Label(window, text="GAZPROMBANK, %")
+    t6.place(relx=0.045, rely=0.57)
+
+    t7 = Label(window, text="MTS BANK, %")
+    t7.place(relx=0.236, rely=0.57)
+
+    t8 = Label(window, text="VTB, %")
+    t8.place(relx=0.427, rely=0.57)
+
+    t9 = Label(window, text="SBERBANK, %")
+    t9.place(relx=0.618, rely=0.57)
+    
+    t10 = Label(window, text="TINKOFF, %")
+    t10.place(relx=0.809, rely=0.57)
+    
+    combo6 = Combobox(window, width=10)  
+    combo6['values'] = (10, 20, 30, 40, 50, 60, 70)  
+    combo6.current(5) 
+    combo6.place(relx=0.045, rely=0.65)
+
+    combo7 = Combobox(window, width=10)  
+    combo7['values'] = (10, 20, 30, 40, 50, 60, 70)  
+    combo7.current(0) 
+    combo7.place(relx=0.236, rely=0.65)
+
+    combo8 = Combobox(window, width=10)  
+    combo8['values'] = (10, 20, 30, 40, 50, 60, 70)  
+    combo8.current(0) 
+    combo8.place(relx=0.427, rely=0.65)
+
+    combo9 = Combobox(window, width=10)  
+    combo9['values'] = (10, 20, 30, 40, 50, 60, 70)  
+    combo9.current(0) 
+    combo9.place(relx=0.618, rely=0.65)
+    
+    combo10 = Combobox(window, width=10)  
+    combo10['values'] = (10, 20, 30, 40, 50, 60, 70)  
+    combo10.current(0) 
+    combo10.place(relx=0.809, rely=0.65)
+
+    txt = Entry(window,width=20)  
+    txt.place(relx=0.2, rely=0.85)
+
+    lbl9 = Label(window, text="Введите количество строк", font='Arial 12')
+    lbl9.place(relx=0.3, rely=0.8, anchor=CENTER)
+
+    lbl11 = Label(window, text="Значение по умолчанию: 10000", font='Arial 8')
+    lbl11.place(relx=0.3, rely=0.95, anchor=CENTER)
+
+
+    lbl12 = Label(window, text="Выберите категорию товаров", font='Arial 12')
+    lbl12.place(relx=0.6, rely=0.8, anchor=CENTER)
+    
+    combo11 = Combobox(window, width=20)  
+    combo11['values'] = ('electronics','clothes','food','all types')  
+    combo11.current(3) 
+    combo11.place(relx=0.5, rely=0.85)
+    
+    def on_button_click():
+        possibility_painment_sys = [float(combo1.get())/100,float(combo2.get())/100,float(combo3.get())/100,float(combo4.get())/100,float(combo5.get())/100]
+        possibility_banks = [float(combo6.get())/100,float(combo7.get())/100,float(combo8.get())/100,float(combo9.get())/100,float(combo10.get())/100]
+        category_chosen = combo11.get()
+        category_id = {
+            'electronics': 1,
+            'clothes': 2,
+            'food': 3,
+            'all types': 4
+        }
+        print(category_id[category_chosen])
+        clicked(possibility_banks=possibility_banks, possibility_painment_sys=possibility_painment_sys, category_type=category_id[category_chosen])
+
+    btn = Button(window, text="Создать таблицу", command=on_button_click)
+    btn.place(relx=0.95, rely=0.95, anchor="se", width=150) 
+
+    window.mainloop()
