@@ -124,37 +124,36 @@ def generate_random_datetime(min_time="09:00", max_time="21:00"):
     return random_datetime.strftime("%Y-%m-%dT%H:%M")
 
 def generate_one_card_2(pay_system, bank):
-    card_format = '{fig} {fig2} {fig3} {fig4}'
+    card_format = '{fig12} {fig3} {fig4}'
     #bank_names = ['SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK', 'GAZPROMBANK']
     if pay_system == 'MIR':
         if bank == 'SBERBANK OF RUSSIA':
-            figures = '2202'
+            figures = '2202 20'
         elif bank == 'TINKOFF BANK':
-            figures = '2200'
+            figures = '2200 70'
         elif bank == 'VTB BANK':
-            figures = '2204'
+            figures = '2200 40'
         else:
-            figures = '2206'
+            figures = '2200 56'
     elif pay_system == 'MASTERCARD':
         if bank == 'SBERBANK OF RUSSIA':
-            figures = '5469'
+            figures = '5228 60'
         elif bank == 'TINKOFF BANK':
-            figures = '5489'
+            figures = '5389 94'
         elif bank == 'VTB BANK':
-            figures = '5443'
+            figures = '5100 43'
         else:
-            figures = '5406'
-    else:
+            figures = '5112 23'
+    else: # VISA
         if bank == 'SBERBANK OF RUSSIA':
-            figures = '4276'
+            figures = '4039 33'
         elif bank == 'TINKOFF BANK':
-            figures = '4277'
+            figures = '4377 73'
         elif bank == 'VTB BANK':
-            figures = '4272'
+            figures = '4986 29'
         else:
-            figures = '4279'
-    argz = {'fig': figures, 
-            'fig2': str(random.randint(1000, 9999)), 
+            figures = '4306 43'
+    argz = {'fig12': figures + str(random.randint(10, 99)), 
             'fig3': str(random.randint(1000, 9999)), 
             'fig4': str(random.randint(1000, 9999))}
     
