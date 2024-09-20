@@ -161,7 +161,7 @@ def generate_one_card_2(pay_system, bank):
     return card_format.format(**argz)
     
 def possibility_generator(poss_vec, cat_vec):
-    return random.choices(cat_vec, poss_vec)[0]
+    return random.choices(cat_vec, weights=poss_vec)[0]
 
 def generate_one_output(poss_bank_vec,poss_painment_vec):
     out = []
