@@ -9,7 +9,6 @@ from tkinter.ttk import Combobox
 possible_brands = []
 possible_shopname = []
 possible_item_and_price = []
-possible_bank_system = []
 bank_names = ['GAZPROMBANK','MTS BANK','SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK']
 painment_system_names = ['MIR','VISA','MASTERCARD']
 
@@ -93,20 +92,6 @@ def generate_possible_variants(category):
         print("No products.csv found, exiting..")
         exit()
 
-def generate_card_dataset():
-    try:
-        with open('data/cards.csv', mode='r', newline='') as cards_csv:
-            reader = csv.reader(cards_csv, delimiter=',')
-            next(reader)  # Skip header
-            for rows in reader:
-                bin, country, bank_name, system_name, card_type, tariff = rows
-                possible_bank_system.append([bin, bank_name, system_name])
-    except FileNotFoundError:
-        print("No cards.csv found, exiting..")
-        exit()
-            
-
-
 def generate_random_datetime(min_time="09:00", max_time="21:00"):
     # Задаем диапазон дат: начальная и конечная
     start_date = datetime(2024, 1, 1)
@@ -138,22 +123,6 @@ def generate_random_datetime(min_time="09:00", max_time="21:00"):
     # Возвращаем дату и время в формате ISO 8601: YYYY-MM-DDTHH:MM
     return random_datetime.strftime("%Y-%m-%dT%H:%M")
 
-def generate_one_card(bank='random', system='random'):
-    cards = possible_bank_system
-    # Filter cards by bank and payment system
-    filtered_cards = [card for card in cards if (bank == 'random' or card[1] == bank) and (system == 'random' or card[2] == system)]
-    
-    # Check if there are any matching cards
-    if filtered_cards:
-        chosen_card_start = random.choice(filtered_cards)
-        chosen_BIN = str(chosen_card_start[0])
-        return chosen_BIN[:-1] + str(random.randint(1000000000,9999999999))
-    else:
-        print(possible_bank_system)
-        print(bank,system)
-        print("No matching card found")
-        exit()
-        
 def generate_one_card_2(pay_system, bank):
     card_format = '{fig} {fig2} {fig3} {fig4}'
     #bank_names = ['SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK', 'GAZPROMBANK']
@@ -236,7 +205,6 @@ def generate_dataset(amount=10000, category_type=1, possibility_banks=[0.5,0.1,0
             generate_possible_variants(i)
     else:
         generate_possible_variants(category_type)
-    generate_card_dataset()
     for i in range(amount):
         if(i % (amount / 100) == 0):
             print(f'working, {round(((i/amount)*100),1)}%')
