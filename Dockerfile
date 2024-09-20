@@ -9,6 +9,7 @@ RUN mkdir data
 COPY data/brands.csv /usr/src/app/data
 COPY data/products.csv /usr/src/app/data
 COPY data/shop_names.csv /usr/src/app/data
+COPY data/cards.csv /usr/src/app/data
 COPY requirements.txt /usr/src/app
 RUN pip install -r requirements.txt
 

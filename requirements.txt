@@ -1,4 +1,2 @@
-random
-csv
 datetime
-tkinter
+tk
