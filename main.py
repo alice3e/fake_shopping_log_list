@@ -5,7 +5,6 @@ import os
 from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import Combobox
-import select
 
 possible_brands = []
 possible_shopname = []
@@ -20,8 +19,6 @@ def dms_to_decimal(deg, minutes, sec, direction):
     if direction in ['S', 'W']:
         decimal = -decimal
     return decimal
-
-
 
 def generate_coordinates():
     # точки для генерации координат
@@ -205,10 +202,11 @@ def generate_dataset(amount=50, category_type=1, possibility_banks=[0.5,0.1,0.1,
         generate_possible_variants(category_type)
     generate_card_dataset()
     for i in range(amount):
-        if(i % 10000 == 0):
+        if(i % (amount / 100) == 0):
             print(f'working, {round(((i/amount)*100),1)}%')
         out = generate_one_output(poss_bank_vec=possibility_banks,poss_painment_vec=possibility_painment_sys)
         write_into_csv_file(out)
+
 
 def clicked(possibility_banks,possibility_painment_sys,category_type):
     try:
@@ -328,7 +326,7 @@ if __name__ == '__main__':
     combo11['values'] = ('electronics','clothes','food','all types')  
     combo11.current(3) 
     combo11.place(relx=0.5, rely=0.85)
-    
+        
     def on_button_click():
         possibility_painment_sys = [float(combo1.get())/100,float(combo2.get())/100,float(combo3.get())/100]
         possibility_banks = [float(combo6.get())/100,float(combo7.get())/100,float(combo8.get())/100,float(combo9.get())/100,float(combo10.get())/100]
