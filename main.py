@@ -153,10 +153,46 @@ def generate_one_card(bank='random', system='random'):
         print(bank,system)
         print("No matching card found")
         exit()
+        
+def generate_one_card_2(pay_system, bank):
+    card_format = '{fig} {fig2} {fig3} {fig4}'
+    #bank_names = ['SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK', 'GAZPROMBANK']
+    if pay_system == 'MIR':
+        if bank == 'SBERBANK OF RUSSIA':
+            figures = '2202'
+        elif bank == 'TINKOFF BANK':
+            figures = '2200'
+        elif bank == 'VTB BANK':
+            figures = '2204'
+        else:
+            figures = '2206'
+    elif pay_system == 'MASTERCARD':
+        if bank == 'SBERBANK OF RUSSIA':
+            figures = '5469'
+        elif bank == 'TINKOFF BANK':
+            figures = '5489'
+        elif bank == 'VTB BANK':
+            figures = '5443'
+        else:
+            figures = '5406'
+    else:
+        if bank == 'SBERBANK OF RUSSIA':
+            figures = '4276'
+        elif bank == 'TINKOFF BANK':
+            figures = '4277'
+        elif bank == 'VTB BANK':
+            figures = '4272'
+        else:
+            figures = '4279'
+    argz = {'fig': figures, 
+            'fig2': str(random.randint(1000, 9999)), 
+            'fig3': str(random.randint(1000, 9999)), 
+            'fig4': str(random.randint(1000, 9999))}
+    
+    return card_format.format(**argz)
     
 def possibility_generator(poss_vec, cat_vec):
-    probabilities = poss_vec
-    return random.choices(cat_vec, probabilities)[0]
+    return random.choices(cat_vec, poss_vec)[0]
 
 def generate_one_output(poss_bank_vec,poss_painment_vec):
     out = []
@@ -169,7 +205,7 @@ def generate_one_output(poss_bank_vec,poss_painment_vec):
     out.append(item) 
     out.append(random.choice(possible_brands))
     bank,painment_sys = possibility_generator(poss_bank_vec, bank_names),possibility_generator(poss_painment_vec, painment_system_names)
-    out.append(generate_one_card(bank=bank,system=painment_sys)) # card generation
+    out.append(generate_one_card_2(bank=bank,pay_system=painment_sys)) # card generation
     amount = random.randint(1,7) # amount of items
     out.append(amount)
     out.append(random.randint(min_pr,max_pr) * amount)
@@ -194,7 +230,7 @@ def write_into_csv_file(sample):
         # Записываем переданный массив данных
         writer.writerow(sample)
 
-def generate_dataset(amount=50, category_type=1, possibility_banks=[0.5,0.1,0.1,0.1,0.1,0.1], possibility_painment_sys=[0.5,0.1,0.1,0.1,0.1,0.1]):
+def generate_dataset(amount=10000, category_type=1, possibility_banks=[0.5,0.1,0.1,0.1,0.1,0.1], possibility_painment_sys=[0.5,0.1,0.1,0.1,0.1,0.1]):
     if(category_type==4):
         for i in range(1,4):
             generate_possible_variants(i)
@@ -223,6 +259,7 @@ def clicked(possibility_banks,possibility_painment_sys,category_type):
 
 
 if __name__ == '__main__':
+    
     window = Tk()
     window.title("Конструктор синтетических данных")
     window.geometry('900x600')
@@ -232,7 +269,7 @@ if __name__ == '__main__':
     lbl.place(relx=0.5, rely=0.1, anchor=CENTER)
     
 
-    lbl2 = Label(window, text="Перед началом работы выберите необходимые настройки:", font='Arial 12')  
+    lbl2 = Label(window, text="Выберите необходимые параметры для генерации:", font='Arial 12')  
     lbl2.place(relx=0.5, rely=0.17, anchor=CENTER)
 
     # Payment system processing:
@@ -315,7 +352,7 @@ if __name__ == '__main__':
     lbl9 = Label(window, text="Введите количество строк", font='Arial 12')
     lbl9.place(relx=0.3, rely=0.8, anchor=CENTER)
 
-    lbl11 = Label(window, text="Значение по умолчанию: 10000", font='Arial 8')
+    lbl11 = Label(window, text="Значение по умолчанию: 1000", font='Arial 8')
     lbl11.place(relx=0.3, rely=0.95, anchor=CENTER)
 
 
