@@ -9,7 +9,7 @@ from tkinter.ttk import Combobox
 
 bank_names = ['GAZPROMBANK','MTS BANK','SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK']
 painment_system_names = ['MIR','VISA','MASTERCARD']
-products_data = []
+
 
 def read_data(file_path: str, delimiter: str) -> list:
     data = []
@@ -118,9 +118,13 @@ def possibility_generator(poss_vec, cat_vec):
     return random.choices(cat_vec, weights=poss_vec)[0]
 
 def choose_one_row(data_table: list, type: str = 'clothes') -> list:
+    #print(f'choose_one_row() : data_table - {data_table}, type - {type}')
     # Фильтруем строки по заданному типу
-    filtered_data = [row for row in data_table if row[0].strip() == type]
-    
+    if(type != 'all types'):
+        filtered_data = [row for row in data_table if row[0].strip() == type]
+    else:
+        filtered_data = data_table
+    #print(f'filtered - {filtered_data}')
     if not filtered_data:
         return None  # Если нет данных для заданного типа, возвращаем None
     # Выбираем случайный элемент из отфильтрованных данных
@@ -128,8 +132,10 @@ def choose_one_row(data_table: list, type: str = 'clothes') -> list:
     return random_item
 
 def choose_item_from_row(row: list) -> list:
+    #(f'Chosen row = {row}')
     if len(row) < 4:
         return None
+    general_category = row[0].strip()
     brands = row[1].split(', ')
     items = row[2].split(', ')
     prices = list(map(float, row[3].split(', ')))
@@ -145,20 +151,19 @@ def choose_item_from_row(row: list) -> list:
     # Генерируем случайное значение в пределах диапазона
     random_price = int(round(random.uniform(lower_bound, upper_bound)))
     # Возвращаем информацию о случайном товаре
-    return [brands[random_brand], items[random_product],random_price]
+    return [general_category,brands[random_brand], items[random_product],random_price]
 
 
 def generate_one_output(dataset: list,poss_bank_vec,poss_painment_vec,data_type='all types'):
     out = []
     # Магнит Онлайн,59.86261171 ; 30.3339711,2024-02-24T11:36,Орехи грецкие,Родник Приэльбрусья,2202 2066 7798 4241,6,2856
     random_row = choose_one_row(data_table=dataset, type=data_type)
-    brand, item, price = choose_item_from_row(random_row)
+    general_category, brand, item, price = choose_item_from_row(random_row)
     shop_data = read_data('data/shop_names.csv',delimiter=';')
-    random_shop_name = choose_one_row(data_table=shop_data, type=data_type)
-    
-    out.append(random_shop_name) # shop name
+    random_shop_name = choose_one_row(data_table=shop_data, type=general_category)
+    out.append(random_shop_name[1].strip()) # shop name
     out.append(generate_coordinates()) # coordinates
-    
+
     min_time = '0'+str(random.randint(7,9))+':00' # time
     max_time =  str(random.randint(19,22))+':00' # time
     
@@ -194,7 +199,7 @@ def write_into_csv_file(sample):
         writer.writerow(sample)
 
 def generate_dataset(amount=10000, category_type='all types', possibility_banks=[0.5,0.1,0.1,0.1,0.1,0.1], possibility_painment_sys=[0.5,0.1,0.1,0.1,0.1,0.1]):
-    dataset = read_data('data/general_table.csv')
+    dataset = read_data('data/general_table.csv', delimiter=';')
     for i in range(amount):
         if(i % (amount / 100) == 0):
             print(f'working, {round(((i/amount)*100),1)}%')
@@ -212,13 +217,7 @@ def clicked(possibility_banks,possibility_painment_sys,category_type):
     elif(amount <= 0):
         messagebox.showinfo('Ошибка', 'Указано неправильное количество строк')    
     else:
-        categories_id = {
-            0 : 'electronics',
-            1 : 'clothes',
-            2 : 'food',
-            3 : 'all types',
-        }
-        generate_dataset(amount=amount, category_type=categories_id[category_type], possibility_banks=possibility_banks, possibility_painment_sys=possibility_painment_sys)
+        generate_dataset(amount=amount, category_type=category_type, possibility_banks=possibility_banks, possibility_painment_sys=possibility_painment_sys)
         messagebox.showinfo('Готово', 'Создание таблицы завершено')
 
 
@@ -332,14 +331,9 @@ if __name__ == '__main__':
         possibility_painment_sys = [float(combo1.get())/100,float(combo2.get())/100,float(combo3.get())/100]
         possibility_banks = [float(combo6.get())/100,float(combo7.get())/100,float(combo8.get())/100,float(combo9.get())/100,float(combo10.get())/100]
         category_chosen = combo11.get()
-        category_id = {
-            'electronics': 1,
-            'clothes': 2,
-            'food': 3,
-            'all types': 4
-        }
-        print(category_id[category_chosen])
-        clicked(possibility_banks=possibility_banks, possibility_painment_sys=possibility_painment_sys, category_type=category_id[category_chosen])
+        print(category_chosen)
+
+        clicked(possibility_banks=possibility_banks, possibility_painment_sys=possibility_painment_sys, category_type=category_chosen)
 
     btn = Button(window, text="Создать таблицу", command=on_button_click)
     btn.place(relx=0.95, rely=0.95, anchor="se", width=150) 
