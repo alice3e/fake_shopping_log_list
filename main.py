@@ -161,23 +161,22 @@ def generate_one_output(dataset: list,poss_bank_vec,poss_painment_vec,data_type=
     general_category, brand, item, price = choose_item_from_row(random_row)
     shop_data = read_data('data/shop_names.csv',delimiter=';')
     random_shop_name = choose_one_row(data_table=shop_data, type=general_category)
-    out.append(random_shop_name[1].strip()) # shop name
-    out.append(generate_coordinates()) # coordinates
-
     min_time = '0'+str(random.randint(7,9))+':00' # time
     max_time =  str(random.randint(19,22))+':00' # time
-    
+    bank,painment_sys = possibility_generator(poss_bank_vec, bank_names),possibility_generator(poss_painment_vec, painment_system_names)
+    amount = random.randint(1,7) # amount of items
+ 
+
+    out.append(random_shop_name[1].strip()) # shop name
+    out.append(generate_coordinates()) # coordinates TODO : make lists with coordinates
     out.append(generate_random_datetime(min_time=min_time,max_time=max_time)) # time
     out.append(item) 
     out.append(brand)
-    
-    bank,painment_sys = possibility_generator(poss_bank_vec, bank_names),possibility_generator(poss_painment_vec, painment_system_names)
     out.append(generate_one_card_2(bank=bank,pay_system=painment_sys)) # card generation
-    
-    amount = random.randint(1,7) # amount of items
     out.append(amount)
     out.append((price) * amount)
-    return out
+    
+    return outs
 
 def write_into_csv_file(sample):
     # Названия столбцов
