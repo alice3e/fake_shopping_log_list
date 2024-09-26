@@ -6,12 +6,20 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import Combobox
 
-possible_brands = []
-possible_shopname = []
-possible_item_and_price = []
+
 bank_names = ['GAZPROMBANK','MTS BANK','SBERBANK OF RUSSIA','TINKOFF BANK','VTB BANK']
 painment_system_names = ['MIR','VISA','MASTERCARD']
+products_data = []
 
+def read_data(file_path: str, delimiter: str) -> list:
+    data = []
+    with open(file_path, mode='r', newline='', encoding='utf-8') as file:
+        reader = csv.reader(file, delimiter=delimiter)
+        for row in reader:
+            if row:  # Проверка на пустую строку
+                data.append(row)
+    return data
+    
 
 def dms_to_decimal(deg, minutes, sec, direction):
     decimal = deg + minutes / 60 + sec / 3600
@@ -38,59 +46,6 @@ def generate_coordinates():
 
     return (str(coord_N) + ' ; ' + str(coord_E))
 
-def generate_possible_variants(category):
-    match category:
-        case 1:  # electronics
-            output = ['electronics']  # product_type, shop_name, category, brand, price
-        case 2:  # clothes
-            output = ['clothes']
-        case 3:  # food
-            output = ['food']
-        case _:
-            output = ['all_types']  # Default case for unknown category
-
-    # Use a more detailed exception handling to capture specific issues
-    try:
-        with open('data/shop_names.csv', mode='r', newline='') as shops_csv:
-            reader = csv.reader(shops_csv, delimiter='\t')
-            next(reader)  # Skip header
-            for rows in reader:
-                shop_name, product_type = rows
-                if product_type == output[0] or output[0] == 'all_types':
-                    possible_shopname.append(shop_name)
-    except FileNotFoundError:
-        print("No shop_names.csv found, exiting..")
-        exit()
-
-    try:
-        with open('data/brands.csv', mode='r', newline='') as brands_csv:
-            reader = csv.reader(brands_csv, delimiter='\t')
-            next(reader)  # Skip header
-            for rows in reader:
-                product_type, brand_name = rows
-                if product_type == output[0] or output[0] == 'all_types':
-                    possible_brands.append(brand_name)
-    except FileNotFoundError:
-        print("No brands.csv found, exiting..")
-        exit()
-
-    try:
-        with open('data/products.csv', mode='r', newline='') as item_csv:
-            reader = csv.reader(item_csv, delimiter='\t')
-            next(reader)  # Skip header
-            for rows in reader:
-                product_type, item_type, min_price, max_price = rows
-                try:
-                    min_price = int(float(min_price) * 43)
-                    max_price = int(float(max_price) * 43)
-                except ValueError:
-                    print("Problems with price generation in generate_possible_variants")
-                    exit()
-                if product_type == output[0] or output[0] == 'all_types':
-                    possible_item_and_price.append([item_type, min_price, max_price])
-    except FileNotFoundError:
-        print("No products.csv found, exiting..")
-        exit()
 
 def generate_random_datetime(min_time="09:00", max_time="21:00"):
     # Задаем диапазон дат: начальная и конечная
@@ -132,18 +87,18 @@ def generate_one_card_2(pay_system, bank):
         elif bank == 'TINKOFF BANK':
             figures = '2200 70'
         elif bank == 'VTB BANK':
-            figures = '2200 40'
+            figures = '2200 40' 
         else:
-            figures = '2200 56'
+            figures = '2200 56' #GAZPROMBANK
     elif pay_system == 'MASTERCARD':
         if bank == 'SBERBANK OF RUSSIA':
             figures = '5228 60'
         elif bank == 'TINKOFF BANK':
             figures = '5389 94'
         elif bank == 'VTB BANK':
-            figures = '5100 43'
+            figures = '5211 94'
         else:
-            figures = '5112 23'
+            figures = '5112 23' #GAZPROMBANK
     else: # VISA
         if bank == 'SBERBANK OF RUSSIA':
             figures = '4039 33'
@@ -152,7 +107,7 @@ def generate_one_card_2(pay_system, bank):
         elif bank == 'VTB BANK':
             figures = '4986 29'
         else:
-            figures = '4306 43'
+            figures = '4306 43' #GAZPROMBANK
     argz = {'fig12': figures + str(random.randint(10, 99)), 
             'fig3': str(random.randint(1000, 9999)), 
             'fig4': str(random.randint(1000, 9999))}
@@ -162,21 +117,61 @@ def generate_one_card_2(pay_system, bank):
 def possibility_generator(poss_vec, cat_vec):
     return random.choices(cat_vec, weights=poss_vec)[0]
 
-def generate_one_output(poss_bank_vec,poss_painment_vec):
+def choose_one_row(data_table: list, type: str = 'clothes') -> list:
+    # Фильтруем строки по заданному типу
+    filtered_data = [row for row in data_table if row[0].strip() == type]
+    
+    if not filtered_data:
+        return None  # Если нет данных для заданного типа, возвращаем None
+    # Выбираем случайный элемент из отфильтрованных данных
+    random_item = random.choice(filtered_data)
+    return random_item
+
+def choose_item_from_row(row: list) -> list:
+    if len(row) < 4:
+        return None
+    brands = row[1].split(', ')
+    items = row[2].split(', ')
+    prices = list(map(float, row[3].split(', ')))
+    
+    if len(items) != len(prices):
+        return None  # Если количество элементов не совпадает, возвращаем None
+
+    random_brand = random.randint(0, len(brands) - 1)
+    random_product = random.randint(0, len(items) - 1)
+    price = prices[random_product]
+    lower_bound = price * 0.75 * 65
+    upper_bound = price * 1.25 * 65
+    # Генерируем случайное значение в пределах диапазона
+    random_price = int(round(random.uniform(lower_bound, upper_bound)))
+    # Возвращаем информацию о случайном товаре
+    return [brands[random_brand], items[random_product],random_price]
+
+
+def generate_one_output(dataset: list,poss_bank_vec,poss_painment_vec,data_type='all types'):
     out = []
-    out.append(random.choice(possible_shopname)) # brand
+    # Магнит Онлайн,59.86261171 ; 30.3339711,2024-02-24T11:36,Орехи грецкие,Родник Приэльбрусья,2202 2066 7798 4241,6,2856
+    random_row = choose_one_row(data_table=dataset, type=data_type)
+    brand, item, price = choose_item_from_row(random_row)
+    shop_data = read_data('data/shop_names.csv',delimiter=';')
+    random_shop_name = choose_one_row(data_table=shop_data, type=data_type)
+    
+    out.append(random_shop_name) # shop name
     out.append(generate_coordinates()) # coordinates
-    item,min_pr,max_pr = random.choice(possible_item_and_price) # price
+    
     min_time = '0'+str(random.randint(7,9))+':00' # time
     max_time =  str(random.randint(19,22))+':00' # time
+    
     out.append(generate_random_datetime(min_time=min_time,max_time=max_time)) # time
     out.append(item) 
-    out.append(random.choice(possible_brands))
+    out.append(brand)
+    
     bank,painment_sys = possibility_generator(poss_bank_vec, bank_names),possibility_generator(poss_painment_vec, painment_system_names)
     out.append(generate_one_card_2(bank=bank,pay_system=painment_sys)) # card generation
+    
     amount = random.randint(1,7) # amount of items
     out.append(amount)
-    out.append(random.randint(min_pr,max_pr) * amount)
+    out.append((price) * amount)
     return out
 
 def write_into_csv_file(sample):
@@ -198,16 +193,12 @@ def write_into_csv_file(sample):
         # Записываем переданный массив данных
         writer.writerow(sample)
 
-def generate_dataset(amount=10000, category_type=1, possibility_banks=[0.5,0.1,0.1,0.1,0.1,0.1], possibility_painment_sys=[0.5,0.1,0.1,0.1,0.1,0.1]):
-    if(category_type==4):
-        for i in range(1,4):
-            generate_possible_variants(i)
-    else:
-        generate_possible_variants(category_type)
+def generate_dataset(amount=10000, category_type='all types', possibility_banks=[0.5,0.1,0.1,0.1,0.1,0.1], possibility_painment_sys=[0.5,0.1,0.1,0.1,0.1,0.1]):
+    dataset = read_data('data/general_table.csv')
     for i in range(amount):
         if(i % (amount / 100) == 0):
             print(f'working, {round(((i/amount)*100),1)}%')
-        out = generate_one_output(poss_bank_vec=possibility_banks,poss_painment_vec=possibility_painment_sys)
+        out = generate_one_output(dataset=dataset,poss_bank_vec=possibility_banks,poss_painment_vec=possibility_painment_sys,data_type=category_type)
         write_into_csv_file(out)
 
 
@@ -221,7 +212,13 @@ def clicked(possibility_banks,possibility_painment_sys,category_type):
     elif(amount <= 0):
         messagebox.showinfo('Ошибка', 'Указано неправильное количество строк')    
     else:
-        generate_dataset(amount=amount, category_type=category_type, possibility_banks=possibility_banks, possibility_painment_sys=possibility_painment_sys)
+        categories_id = {
+            0 : 'electronics',
+            1 : 'clothes',
+            2 : 'food',
+            3 : 'all types',
+        }
+        generate_dataset(amount=amount, category_type=categories_id[category_type], possibility_banks=possibility_banks, possibility_painment_sys=possibility_painment_sys)
         messagebox.showinfo('Готово', 'Создание таблицы завершено')
 
 
@@ -348,3 +345,5 @@ if __name__ == '__main__':
     btn.place(relx=0.95, rely=0.95, anchor="se", width=150) 
 
     window.mainloop()
+    # TODO : сломаны категории (колбаса Milka), all type тоже сломано
+    

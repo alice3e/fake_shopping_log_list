@@ -1,583 +1,583 @@
-product_type	brand_name
-clothes	Nike
-clothes	Adidas
-clothes	Puma
-clothes	Under Armour
-clothes	Reebok
-clothes	Converse
-clothes	Levi's
-clothes	H&M
-clothes	Zara
-clothes	Uniqlo
-clothes	Gap
-clothes	Old Navy
-clothes	Calvin Klein
-clothes	Tommy Hilfiger
-clothes	Ralph Lauren
-clothes	Hilfiger Denim
-clothes	Abercrombie & Fitch
-clothes	American Eagle Outfitters
-clothes	Guess
-clothes	Armani
-clothes	Versace
-clothes	Prada
-clothes	Gucci
-clothes	Dolce & Gabbana
-clothes	Chanel
-clothes	Louis Vuitton
-clothes	Hermès
-clothes	Burberry
-clothes	Vivienne Westwood
-clothes	Marc Jacobs
-clothes	Dolce & Gabbana
-clothes	Saint Laurent
-clothes	Balenciaga
-clothes	Fendi
-clothes	Bottega Veneta
-clothes	Valentino
-clothes	Mango
-clothes	Topshop
-clothes	ASOS
-clothes	Forever 21
-clothes	AllSaints
-clothes	Diesel
-clothes	Superdry
-clothes	Jack & Jones
-clothes	G-Star RAW
-clothes	True Religion
-clothes	Le Coq Sportif
-clothes	Champion
-clothes	Ellesse
-clothes	Fila
-clothes	Skechers
-clothes	Vans
-clothes	Abercrombie & Fitch
-clothes	Patagonia
-clothes	North Face
-clothes	Columbia Sportswear
-clothes	Moncler
-clothes	Canada Goose
-clothes	Barbour
-clothes	Paul Smith
-clothes	Ted Baker
-clothes	Rag & Bone
-clothes	Theory
-clothes	Joseph
-clothes	J.Crew
-clothes	Brooks Brothers
-clothes	Eileen Fisher
-clothes	Lululemon Athletica
-clothes	Alo Yoga
-clothes	Sweaty Betty
-clothes	Beyond Yoga
-clothes	Athleta
-clothes	Lacoste
-clothes	Hugo Boss
-clothes	Kenzo
-clothes	Miu Miu
-clothes	Loewe
-clothes	Tory Burch
-clothes	Kate Spade
-clothes	Michael Kors
-clothes	Rebecca Minkoff
-clothes	Longchamp
-clothes	Sandro
-clothes	Maje
-clothes	Zadig & Voltaire
-clothes	A.P.C.
-clothes	Dries Van Noten
-clothes	Comme des Garçons
-clothes	Isabel Marant
-clothes	Acne Studios
-clothes	Alexander McQueen
-clothes	R13
-clothes	Maison Kitsuné
-clothes	Nautica
-clothes	Esprit
-clothes	Carhartt
-clothes	Levi's Vintage Clothing
-clothes	Diesel Black Gold
-clothes	Ganni
-clothes	Sophie Hulme
-clothes	Zimmermann
-clothes	Alo Yoga
-clothes	Sandro
-clothes	Maje
-clothes	Tibi
-clothes	Eres
-clothes	The Row
-clothes	Stella McCartney
-clothes	Proenza Schouler
-clothes	Kenzo
-clothes	Jil Sander
-clothes	Rick Owens
-clothes	Balmain
-clothes	Chloé
-clothes	Gianvito Rossi
-clothes	Martha Stewart Collection
-clothes	Alice + Olivia
-clothes	Joie
-clothes	Rebecca Taylor
-clothes	L'Agence
-clothes	Clu
-clothes	Cinq à Sept
-clothes	Smythe
-clothes	Ralph Lauren Purple Label
-clothes	Theory
-clothes	Helmut Lang
-clothes	La Perla
-clothes	Boss Orange
-clothes	Diane von Furstenberg
-clothes	Zegna
-clothes	BOSS
-clothes	Sandro
-clothes	Maje
-clothes	Loro Piana
-clothes	Maison Margiela
-clothes	Giorgio Armani
-clothes	Paul & Joe
-clothes	Vivienne Tam
-clothes	Eytys
-clothes	BOSS Athleisure
-clothes	A.P.C.
-clothes	Camilla and Marc
-clothes	Sies Marjan
-clothes	Nanushka
-clothes	Tibi
-clothes	GmbH
-clothes	Ganni
-clothes	Nili Lotan
-clothes	Sandro
-clothes	Maje
-clothes	The Kooples
-clothes	Faithfull the Brand
-clothes	Ksubi
-clothes	Re/Done
-clothes	Paco Rabanne
-clothes	Mollusk
-clothes	Gosha Rubchinskiy
-clothes	Christopher Kane
-clothes	Dries Van Noten
-clothes	JW Anderson
-clothes	Marni
-clothes	Osman
-clothes	Staud
-clothes	Nanushka
-clothes	Sacai
-clothes	Y-3
-clothes	Comme des Garçons
-clothes	Acne Studios
-clothes	Rick Owens
-clothes	Yohji Yamamoto
-clothes	Loewe
-clothes	Missoni
-electronics	Apple
-electronics	Samsung
-electronics	Sony
-electronics	LG
-electronics	Panasonic
-electronics	Microsoft
-electronics	Dell
-electronics	HP (Hewlett-Packard)
-electronics	Lenovo
-electronics	Acer
-electronics	Asus
-electronics	MSI
-electronics	Intel
-electronics	AMD
-electronics	NVIDIA
-electronics	Western Digital
-electronics	Seagate
-electronics	Canon
-electronics	Nikon
-electronics	GoPro
-electronics	Bose
-electronics	Beats
-electronics	Jabra
-electronics	Sennheiser
-electronics	Philips
-electronics	Harman Kardon
-electronics	Logitech
-electronics	Razer
-electronics	Alienware
-electronics	Oculus
-electronics	HTC
-electronics	Xiaomi
-electronics	Huawei
-electronics	OnePlus
-electronics	Sony Ericsson
-electronics	Toshiba
-electronics	Sharp
-electronics	Vizio
-electronics	Roku
-electronics	Amazon
-electronics	Google
-electronics	Nest
-electronics	Fitbit
-electronics	Garmin
-electronics	Jawbone
-electronics	Sennheiser
-electronics	Plantronics
-electronics	JBL
-electronics	Klipsch
-electronics	Yamaha
-electronics	Onkyo
-electronics	Denon
-electronics	Pioneer
-electronics	Marantz
-electronics	Harman
-electronics	Bowers & Wilkins
-electronics	Creative Labs
-electronics	Thermaltake
-electronics	Corsair
-electronics	NZXT
-electronics	Fractal Design
-electronics	EVGA
-electronics	MSI
-electronics	ZOTAC
-electronics	Razer
-electronics	ASRock
-electronics	Biostar
-electronics	Gigabyte
-electronics	Zebra Technologies
-electronics	Epson
-electronics	Brother
-electronics	Xerox
-electronics	Ricoh
-electronics	Kyocera
-electronics	Lexmark
-electronics	Bixolon
-electronics	Dymo
-electronics	Acer
-electronics	Alienware
-electronics	Ampeg
-electronics	AOC
-electronics	BenQ
-electronics	Braven
-electronics	Celestron
-electronics	Cleer Audio
-electronics	Coby
-electronics	Coleman
-electronics	DeLonghi
-electronics	Elekta
-electronics	Elgato
-electronics	Fujifilm
-electronics	Grado Labs
-electronics	JBL
-electronics	JVC
-electronics	Koss
-electronics	Lacie
-electronics	Mackie
-electronics	Monoprice
-electronics	Neato Robotics
-electronics	Nikon
-electronics	Ooma
-electronics	Pyle
-electronics	QNAP
-electronics	RCA
-electronics	Razer
-electronics	Samsung
-electronics	Sandisk
-electronics	Satechi
-electronics	Sennheiser
-electronics	Sharp
-electronics	Shure
-electronics	Sonos
-electronics	Synology
-electronics	Tascam
-electronics	Toshiba
-electronics	Vizio
-electronics	Wacom
-electronics	Wii (Nintendo)
-electronics	Xerox
-electronics	Zagg
-electronics	ZTE
-electronics	Anker
-electronics	Belkin
-electronics	Bose
-electronics	Crock-Pot
-electronics	D-Link
-electronics	Fitbit
-electronics	Gopro
-electronics	Keurig
-electronics	LG
-electronics	Mophie
-electronics	Netgear
-electronics	Nvidia
-electronics	OtterBox
-electronics	Philips
-electronics	Roku
-electronics	Roku
-electronics	Sage
-electronics	Soundcore
-electronics	Spektrum
-electronics	Squeezebox
-electronics	TiVo
-electronics	TP-Link
-electronics	Whirlpool
-electronics	Wyze
-food	Danone
-food	PepsiCo
-food	Unilever
-food	Нестле
-food	Савушкин продукт
-food	Мираторг
-food	ЭкоНива
-food	Черкизово
-food	Махеевъ
-food	Хохланд
-food	Макфа
-food	Балтика
-food	Русагро
-food	Сладкая Жизнь
-food	Крафт Хайнц
-food	Ашан
-food	Пятёрочка
-food	Дикси
-food	Глобус Гурмэ
-food	Комус
-food	Ферреро
-food	Кока-Кола
-food	Heineken
-food	Липтон
-food	Бондюэль
-food	Вимм-Билль-Данн
-food	Белая Дача
-food	Марс
-food	Монделиз
-food	Чумак
-food	Союзснаб
-food	Алёнка
-food	Красный Октябрь
-food	Бабаевский
-food	Рошен
-food	О'Кей
-food	Карусель
-food	Шоколадница
-food	Пятницкий Молочный Завод
-food	Мираторг
-food	Юнилевер
-food	Сваля
-food	Главпродукт
-food	Байкал
-food	Фабрика Лэнд
-food	Натуральные продукты
-food	Мистраль
-food	Архангельский Хлебозавод
-food	Тульская Продуктовая Компания
-food	Вкусно и точка
-food	Кофейная компания
-food	Якобс
-food	Нескафе
-food	Tetley
-food	Dolce Vita
-food	ФрутоНяня
-food	Агуша
-food	Тёма
-food	Спелёнок
-food	Сады Придонья
-food	Яшкино
-food	Конфаэль
-food	Озерский сувенир
-food	Невские Берега
-food	Чайхона №1
-food	Мясницкий ряд
-food	Добрый
-food	Рич
-food	4 сезона
-food	Золотая семечка
-food	Бутербродный Дом
-food	Крошка Картошка
-food	БКС
-food	Красное & Белое
-food	ВкусВилл
-food	Глобус
-food	Перекрёсток
-food	ПРОДУКТЫ ЕРМОЛИНО
-food	Углече Поле
-food	Клубника
-food	Обжорка
-food	Пеко
-food	Крымский берег
-food	Липецкое Молоко
-food	Пепси
-food	Аква Минерале
-food	Волжанка
-food	Родник Приэльбрусья
-food	Нарзан
-food	Ессентуки
-food	Минеральные воды Кавказа
-food	Пико
-food	Напитки Волжанка
-food	Моя семья
-food	Джамбо
-food	Воронежский консервный завод
-food	Увелка
-food	Томмолоко
-food	Лебедянский
-food	Простоквашино
-food	ФрутоСливки
-food	Даниссимо
-food	Мултон
-food	Троицкий хладокомбинат
-food	Баскин Роббинс
-food	Коркунов
-food	Воронежский Маслозавод
-food	Фрутоняня
-food	Бебивита
-food	Хайнц
-food	Бабушкино Лукошко
-food	Сады Придонья
-food	Питмейкер
-food	Русский Продукт
-food	Обед-Буфет
-food	Торговый Дом «Знатные Продукты»
-food	Калужский Пищекомбинат
-food	Локо Пай
-food	Русская Олива
-food	Мистраль
-food	Крымская Колбасная Компания
-food	Кировский Молочный Комбинат
-food	Домик в деревне
-food	Купеческое
-food	Беловодье
-food	Братья Чебурашкины
-food	Шоколадный Мир
-food	Калев
-food	Сладкий орешек
-food	Мясокомбинат Рублевский
-food	Черноморские деликатесы
-food	Малаховская ферма
-food	Доброе утро
-food	Ленинградский молочный завод
-food	Беловодье
-food	Новосибирский молочный завод
-food	Зеленая марка
-food	Витамин
-food	Мартин
-food	Глобус
-food	Атяшево
-food	Калинка
-food	Мясницкий ряд
-food	Губкинский молочный комбинат
-food	Молочный завод «Эссения»
-food	Курганский молочный завод
-food	Псковский молочный завод
-food	Угличский молочный завод
-food	Стародубский молочный завод
-food	Челны Хлеб
-food	Киржачский молочный завод
-food	Белебеевский молочный комбинат
-food	Молочные продукты "Кубань"
-food	Останкинский мясокомбинат
-food	Малаховский мясокомбинат
-food	Микоян
-food	Ремит
-food	Мясной дом Бородина
-food	Петелинка
-food	Золотой петушок
-food	Пава-Пава
-food	Зеленый Молочный
-food	Восточный Гурман
-food	Ударница
-food	Славянка
-food	Акконд
-food	Сибирский берег
-food	Кухмастер
-food	Фабрика-Кухня Смак
-food	КДВ Групп
-food	Мясничий
-food	Мясная Гильдия
-food	Митэкс
-food	Тавр
-food	Велком
-food	Останкино
-food	Село Зеленое
-food	Карат
-food	Белый Медведь
-food	Русский Холод
-food	Снежная Королева
-food	Пломбирный Дом
-food	Чистая Линия
-food	Лакомо
-food	Ферма Васильевых
-food	Деметра Молоко
-food	Петрохолод
-food	Грин Рэй
-food	Главхлеб
-food	Ленхлеб
-food	Бородино
-food	Хлебный Дар
-food	Махеевъ
-food	Краснодарский Хлебозавод
-food	Медовый дом
-food	Славянская Трапеза
-food	Махеев
-food	Славянка
-food	Элитфуд
-food	Алтодор
-food	Вкусный дом
-food	Русские Корни
-food	Сытный край
-food	Велимир
-food	Братья Кипарисы
-food	Северная Долина
-food	Лебедянский
-food	Даниссимо
-food	Чёрный Пират
-food	Заречье
-food	Котлетария
-food	Чайная долина
-food	Довгань
-food	Финский сыр
-food	Московский завод плавленых сыров
-food	Озерский сувенир
-food	Русское мороженое
-food	Холодок
-food	Птицефабрика "Мартыновская"
-food	Русский стиль
-food	Хрустящий край
-food	Троицкий колбасный завод
-food	Сладкоежка
-food	Адыгейский сыр
-food	Геленджикский молочный завод
-food	Арзамасский молочный завод
-food	Уфимский молочный комбинат
-food	Сыры Кубани
-food	Байрам
-food	Полярные звезды
-food	Алтайский продукт
-food	Село Зеленое
-food	Коломенское молоко
-food	Золотое поле
-food	Молочные Речные Воды
-food	Золотой ключик
-food	Золотой резерват
-food	Морозко
-food	Три Медведя
-food	Елисеевское
-food	Пищекомбинат "Лакомка"
-food	Торговая марка "Янтарь"
-food	Гурман
-food	Полоцкий молочный завод
-food	Молочные продукты "Люби Молоко"
-food	Беларуськалий
-food	Фермерское счастье
-food	Этилен-Продукт
-food	Золотой петушок
-food	Наша семья
-food	Семейный стиль
-food	Молочный союз
-food	Этельфуд
-food	Алтайский молочный комбинат
-food	Молочные реки
-food	Денис и Ко
-food	Белгородский молочный комбинат
-food	Молочный мир
-food	Светлый ключ
-food	Тульские продукты
-food	Фабрика доброты
-food	Озерки
-food	Фермерские продукты
-food	Деревенское молоко
-food	Молочный двор
+product_type;brand_name
+clothes;Nike
+clothes;Adidas
+clothes;Puma
+clothes;Under Armour
+clothes;Reebok
+clothes;Converse
+clothes;Levi's
+clothes;H&M
+clothes;Zara
+clothes;Uniqlo
+clothes;Gap
+clothes;Old Navy
+clothes;Calvin Klein
+clothes;Tommy Hilfiger
+clothes;Ralph Lauren
+clothes;Hilfiger Denim
+clothes;Abercrombie & Fitch
+clothes;American Eagle Outfitters
+clothes;Guess
+clothes;Armani
+clothes;Versace
+clothes;Prada
+clothes;Gucci
+clothes;Dolce & Gabbana
+clothes;Chanel
+clothes;Louis Vuitton
+clothes;Hermès
+clothes;Burberry
+clothes;Vivienne Westwood
+clothes;Marc Jacobs
+clothes;Dolce & Gabbana
+clothes;Saint Laurent
+clothes;Balenciaga
+clothes;Fendi
+clothes;Bottega Veneta
+clothes;Valentino
+clothes;Mango
+clothes;Topshop
+clothes;ASOS
+clothes;Forever 21
+clothes;AllSaints
+clothes;Diesel
+clothes;Superdry
+clothes;Jack & Jones
+clothes;G-Star RAW
+clothes;True Religion
+clothes;Le Coq Sportif
+clothes;Champion
+clothes;Ellesse
+clothes;Fila
+clothes;Skechers
+clothes;Vans
+clothes;Abercrombie & Fitch
+clothes;Patagonia
+clothes;North Face
+clothes;Columbia Sportswear
+clothes;Moncler
+clothes;Canada Goose
+clothes;Barbour
+clothes;Paul Smith
+clothes;Ted Baker
+clothes;Rag & Bone
+clothes;Theory
+clothes;Joseph
+clothes;J.Crew
+clothes;Brooks Brothers
+clothes;Eileen Fisher
+clothes;Lululemon Athletica
+clothes;Alo Yoga
+clothes;Sweaty Betty
+clothes;Beyond Yoga
+clothes;Athleta
+clothes;Lacoste
+clothes;Hugo Boss
+clothes;Kenzo
+clothes;Miu Miu
+clothes;Loewe
+clothes;Tory Burch
+clothes;Kate Spade
+clothes;Michael Kors
+clothes;Rebecca Minkoff
+clothes;Longchamp
+clothes;Sandro
+clothes;Maje
+clothes;Zadig & Voltaire
+clothes;A.P.C.
+clothes;Dries Van Noten
+clothes;Comme des Garçons
+clothes;Isabel Marant
+clothes;Acne Studios
+clothes;Alexander McQueen
+clothes;R13
+clothes;Maison Kitsuné
+clothes;Nautica
+clothes;Esprit
+clothes;Carhartt
+clothes;Levi's Vintage Clothing
+clothes;Diesel Black Gold
+clothes;Ganni
+clothes;Sophie Hulme
+clothes;Zimmermann
+clothes;Alo Yoga
+clothes;Sandro
+clothes;Maje
+clothes;Tibi
+clothes;Eres
+clothes;The Row
+clothes;Stella McCartney
+clothes;Proenza Schouler
+clothes;Kenzo
+clothes;Jil Sander
+clothes;Rick Owens
+clothes;Balmain
+clothes;Chloé
+clothes;Gianvito Rossi
+clothes;Martha Stewart Collection
+clothes;Alice + Olivia
+clothes;Joie
+clothes;Rebecca Taylor
+clothes;L'Agence
+clothes;Clu
+clothes;Cinq à Sept
+clothes;Smythe
+clothes;Ralph Lauren Purple Label
+clothes;Theory
+clothes;Helmut Lang
+clothes;La Perla
+clothes;Boss Orange
+clothes;Diane von Furstenberg
+clothes;Zegna
+clothes;BOSS
+clothes;Sandro
+clothes;Maje
+clothes;Loro Piana
+clothes;Maison Margiela
+clothes;Giorgio Armani
+clothes;Paul & Joe
+clothes;Vivienne Tam
+clothes;Eytys
+clothes;BOSS Athleisure
+clothes;A.P.C.
+clothes;Camilla and Marc
+clothes;Sies Marjan
+clothes;Nanushka
+clothes;Tibi
+clothes;GmbH
+clothes;Ganni
+clothes;Nili Lotan
+clothes;Sandro
+clothes;Maje
+clothes;The Kooples
+clothes;Faithfull the Brand
+clothes;Ksubi
+clothes;Re/Done
+clothes;Paco Rabanne
+clothes;Mollusk
+clothes;Gosha Rubchinskiy
+clothes;Christopher Kane
+clothes;Dries Van Noten
+clothes;JW Anderson
+clothes;Marni
+clothes;Osman
+clothes;Staud
+clothes;Nanushka
+clothes;Sacai
+clothes;Y-3
+clothes;Comme des Garçons
+clothes;Acne Studios
+clothes;Rick Owens
+clothes;Yohji Yamamoto
+clothes;Loewe
+clothes;Missoni
+electronics;Apple
+electronics;Samsung
+electronics;Sony
+electronics;LG
+electronics;Panasonic
+electronics;Microsoft
+electronics;Dell
+electronics;HP (Hewlett-Packard)
+electronics;Lenovo
+electronics;Acer
+electronics;Asus
+electronics;MSI
+electronics;Intel
+electronics;AMD
+electronics;NVIDIA
+electronics;Western Digital
+electronics;Seagate
+electronics;Canon
+electronics;Nikon
+electronics;GoPro
+electronics;Bose
+electronics;Beats
+electronics;Jabra
+electronics;Sennheiser
+electronics;Philips
+electronics;Harman Kardon
+electronics;Logitech
+electronics;Razer
+electronics;Alienware
+electronics;Oculus
+electronics;HTC
+electronics;Xiaomi
+electronics;Huawei
+electronics;OnePlus
+electronics;Sony Ericsson
+electronics;Toshiba
+electronics;Sharp
+electronics;Vizio
+electronics;Roku
+electronics;Amazon
+electronics;Google
+electronics;Nest
+electronics;Fitbit
+electronics;Garmin
+electronics;Jawbone
+electronics;Sennheiser
+electronics;Plantronics
+electronics;JBL
+electronics;Klipsch
+electronics;Yamaha
+electronics;Onkyo
+electronics;Denon
+electronics;Pioneer
+electronics;Marantz
+electronics;Harman
+electronics;Bowers & Wilkins
+electronics;Creative Labs
+electronics;Thermaltake
+electronics;Corsair
+electronics;NZXT
+electronics;Fractal Design
+electronics;EVGA
+electronics;MSI
+electronics;ZOTAC
+electronics;Razer
+electronics;ASRock
+electronics;Biostar
+electronics;Gigabyte
+electronics;Zebra Technologies
+electronics;Epson
+electronics;Brother
+electronics;Xerox
+electronics;Ricoh
+electronics;Kyocera
+electronics;Lexmark
+electronics;Bixolon
+electronics;Dymo
+electronics;Acer
+electronics;Alienware
+electronics;Ampeg
+electronics;AOC
+electronics;BenQ
+electronics;Braven
+electronics;Celestron
+electronics;Cleer Audio
+electronics;Coby
+electronics;Coleman
+electronics;DeLonghi
+electronics;Elekta
+electronics;Elgato
+electronics;Fujifilm
+electronics;Grado Labs
+electronics;JBL
+electronics;JVC
+electronics;Koss
+electronics;Lacie
+electronics;Mackie
+electronics;Monoprice
+electronics;Neato Robotics
+electronics;Nikon
+electronics;Ooma
+electronics;Pyle
+electronics;QNAP
+electronics;RCA
+electronics;Razer
+electronics;Samsung
+electronics;Sandisk
+electronics;Satechi
+electronics;Sennheiser
+electronics;Sharp
+electronics;Shure
+electronics;Sonos
+electronics;Synology
+electronics;Tascam
+electronics;Toshiba
+electronics;Vizio
+electronics;Wacom
+electronics;Wii (Nintendo)
+electronics;Xerox
+electronics;Zagg
+electronics;ZTE
+electronics;Anker
+electronics;Belkin
+electronics;Bose
+electronics;Crock-Pot
+electronics;D-Link
+electronics;Fitbit
+electronics;Gopro
+electronics;Keurig
+electronics;LG
+electronics;Mophie
+electronics;Netgear
+electronics;Nvidia
+electronics;OtterBox
+electronics;Philips
+electronics;Roku
+electronics;Roku
+electronics;Sage
+electronics;Soundcore
+electronics;Spektrum
+electronics;Squeezebox
+electronics;TiVo
+electronics;TP-Link
+electronics;Whirlpool
+electronics;Wyze
+food;Danone
+food;PepsiCo
+food;Unilever
+food;Нестле
+food;Савушкин продукт
+food;Мираторг
+food;ЭкоНива
+food;Черкизово
+food;Махеевъ
+food;Хохланд
+food;Макфа
+food;Балтика
+food;Русагро
+food;Сладкая Жизнь
+food;Крафт Хайнц
+food;Ашан
+food;Пятёрочка
+food;Дикси
+food;Глобус Гурмэ
+food;Комус
+food;Ферреро
+food;Кока-Кола
+food;Heineken
+food;Липтон
+food;Бондюэль
+food;Вимм-Билль-Данн
+food;Белая Дача
+food;Марс
+food;Монделиз
+food;Чумак
+food;Союзснаб
+food;Алёнка
+food;Красный Октябрь
+food;Бабаевский
+food;Рошен
+food;О'Кей
+food;Карусель
+food;Шоколадница
+food;Пятницкий Молочный Завод
+food;Мираторг
+food;Юнилевер
+food;Сваля
+food;Главпродукт
+food;Байкал
+food;Фабрика Лэнд
+food;Натуральные продукты
+food;Мистраль
+food;Архангельский Хлебозавод
+food;Тульская Продуктовая Компания
+food;Вкусно и точка
+food;Кофейная компания
+food;Якобс
+food;Нескафе
+food;Tetley
+food;Dolce Vita
+food;ФрутоНяня
+food;Агуша
+food;Тёма
+food;Спелёнок
+food;Сады Придонья
+food;Яшкино
+food;Конфаэль
+food;Озерский сувенир
+food;Невские Берега
+food;Чайхона №1
+food;Мясницкий ряд
+food;Добрый
+food;Рич
+food;4 сезона
+food;Золотая семечка
+food;Бутербродный Дом
+food;Крошка Картошка
+food;БКС
+food;Красное & Белое
+food;ВкусВилл
+food;Глобус
+food;Перекрёсток
+food;ПРОДУКТЫ ЕРМОЛИНО
+food;Углече Поле
+food;Клубника
+food;Обжорка
+food;Пеко
+food;Крымский берег
+food;Липецкое Молоко
+food;Пепси
+food;Аква Минерале
+food;Волжанка
+food;Родник Приэльбрусья
+food;Нарзан
+food;Ессентуки
+food;Минеральные воды Кавказа
+food;Пико
+food;Напитки Волжанка
+food;Моя семья
+food;Джамбо
+food;Воронежский консервный завод
+food;Увелка
+food;Томмолоко
+food;Лебедянский
+food;Простоквашино
+food;ФрутоСливки
+food;Даниссимо
+food;Мултон
+food;Троицкий хладокомбинат
+food;Баскин Роббинс
+food;Коркунов
+food;Воронежский Маслозавод
+food;Фрутоняня
+food;Бебивита
+food;Хайнц
+food;Бабушкино Лукошко
+food;Сады Придонья
+food;Питмейкер
+food;Русский Продукт
+food;Обед-Буфет
+food;Торговый Дом «Знатные Продукты»
+food;Калужский Пищекомбинат
+food;Локо Пай
+food;Русская Олива
+food;Мистраль
+food;Крымская Колбасная Компания
+food;Кировский Молочный Комбинат
+food;Домик в деревне
+food;Купеческое
+food;Беловодье
+food;Братья Чебурашкины
+food;Шоколадный Мир
+food;Калев
+food;Сладкий орешек
+food;Мясокомбинат Рублевский
+food;Черноморские деликатесы
+food;Малаховская ферма
+food;Доброе утро
+food;Ленинградский молочный завод
+food;Беловодье
+food;Новосибирский молочный завод
+food;Зеленая марка
+food;Витамин
+food;Мартин
+food;Глобус
+food;Атяшево
+food;Калинка
+food;Мясницкий ряд
+food;Губкинский молочный комбинат
+food;Молочный завод «Эссения»
+food;Курганский молочный завод
+food;Псковский молочный завод
+food;Угличский молочный завод
+food;Стародубский молочный завод
+food;Челны Хлеб
+food;Киржачский молочный завод
+food;Белебеевский молочный комбинат
+food;"Молочные продукты ""Кубань"""
+food;Останкинский мясокомбинат
+food;Малаховский мясокомбинат
+food;Микоян
+food;Ремит
+food;Мясной дом Бородина
+food;Петелинка
+food;Золотой петушок
+food;Пава-Пава
+food;Зеленый Молочный
+food;Восточный Гурман
+food;Ударница
+food;Славянка
+food;Акконд
+food;Сибирский берег
+food;Кухмастер
+food;Фабрика-Кухня Смак
+food;КДВ Групп
+food;Мясничий
+food;Мясная Гильдия
+food;Митэкс
+food;Тавр
+food;Велком
+food;Останкино
+food;Село Зеленое
+food;Карат
+food;Белый Медведь
+food;Русский Холод
+food;Снежная Королева
+food;Пломбирный Дом
+food;Чистая Линия
+food;Лакомо
+food;Ферма Васильевых
+food;Деметра Молоко
+food;Петрохолод
+food;Грин Рэй
+food;Главхлеб
+food;Ленхлеб
+food;Бородино
+food;Хлебный Дар
+food;Махеевъ
+food;Краснодарский Хлебозавод
+food;Медовый дом
+food;Славянская Трапеза
+food;Махеев
+food;Славянка
+food;Элитфуд
+food;Алтодор
+food;Вкусный дом
+food;Русские Корни
+food;Сытный край
+food;Велимир
+food;Братья Кипарисы
+food;Северная Долина
+food;Лебедянский
+food;Даниссимо
+food;Чёрный Пират
+food;Заречье
+food;Котлетария
+food;Чайная долина
+food;Довгань
+food;Финский сыр
+food;Московский завод плавленых сыров
+food;Озерский сувенир
+food;Русское мороженое
+food;Холодок
+food;"Птицефабрика ""Мартыновская"""
+food;Русский стиль
+food;Хрустящий край
+food;Троицкий колбасный завод
+food;Сладкоежка
+food;Адыгейский сыр
+food;Геленджикский молочный завод
+food;Арзамасский молочный завод
+food;Уфимский молочный комбинат
+food;Сыры Кубани
+food;Байрам
+food;Полярные звезды
+food;Алтайский продукт
+food;Село Зеленое
+food;Коломенское молоко
+food;Золотое поле
+food;Молочные Речные Воды
+food;Золотой ключик
+food;Золотой резерват
+food;Морозко
+food;Три Медведя
+food;Елисеевское
+food;"Пищекомбинат ""Лакомка"""
+food;"Торговая марка ""Янтарь"""
+food;Гурман
+food;Полоцкий молочный завод
+food;"Молочные продукты ""Люби Молоко"""
+food;Беларуськалий
+food;Фермерское счастье
+food;Этилен-Продукт
+food;Золотой петушок
+food;Наша семья
+food;Семейный стиль
+food;Молочный союз
+food;Этельфуд
+food;Алтайский молочный комбинат
+food;Молочные реки
+food;Денис и Ко
+food;Белгородский молочный комбинат
+food;Молочный мир
+food;Светлый ключ
+food;Тульские продукты
+food;Фабрика доброты
+food;Озерки
+food;Фермерские продукты
+food;Деревенское молоко
+food;Молочный двор
