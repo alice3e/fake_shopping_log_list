@@ -20,33 +20,6 @@ def read_data(file_path: str, delimiter: str) -> list:
                 data.append(row)
     return data
     
-
-def dms_to_decimal(deg, minutes, sec, direction):
-    decimal = deg + minutes / 60 + sec / 3600
-    if direction in ['S', 'W']:
-        decimal = -decimal
-    return decimal
-
-def generate_coordinates():
-    # точки для генерации координат
-    A = [dms_to_decimal(59, 57, 28.1, 'N'), dms_to_decimal(30, 18, 30.5, 'E')]
-    B = [dms_to_decimal(59, 50, 17.6, 'N'), dms_to_decimal(30, 11, 58.1, 'E')]
-    C = [dms_to_decimal(59, 53, 32.8, 'N'), dms_to_decimal(30, 31, 0.9, 'E')]
-    r1 = random.random()
-    r2 = random.random()
-    
-    if r1 + r2 > 1:
-        r1 = 1 - r1
-        r2 = 1 - r2
-    
-    coord_N = A[0] + r1 * (B[0] - A[0]) + r2 * (C[0] - A[0])
-    coord_E = A[1] + r1 * (B[1] - A[1]) + r2 * (C[1] - A[1])
-    coord_N = round(coord_N, 8)
-    coord_E = round(coord_E, 8)
-
-    return (str(coord_N) + ' ; ' + str(coord_E))
-
-
 def generate_random_datetime(min_time="09:00", max_time="21:00"):
     # Задаем диапазон дат: начальная и конечная
     start_date = datetime(2024, 1, 1)
@@ -159,24 +132,23 @@ def generate_one_output(dataset: list,poss_bank_vec,poss_painment_vec,data_type=
     # Магнит Онлайн,59.86261171 ; 30.3339711,2024-02-24T11:36,Орехи грецкие,Родник Приэльбрусья,2202 2066 7798 4241,6,2856
     random_row = choose_one_row(data_table=dataset, type=data_type)
     general_category, brand, item, price = choose_item_from_row(random_row)
-    shop_data = read_data('data/shop_names.csv',delimiter=';')
-    random_shop_name = choose_one_row(data_table=shop_data, type=general_category)
+    shop_data = read_data('data/shop_locations.csv',delimiter=';')
+    general_category, shop_name,coordinates = choose_one_row(data_table=shop_data, type=general_category)
     min_time = '0'+str(random.randint(7,9))+':00' # time
     max_time =  str(random.randint(19,22))+':00' # time
     bank,painment_sys = possibility_generator(poss_bank_vec, bank_names),possibility_generator(poss_painment_vec, painment_system_names)
     amount = random.randint(1,7) # amount of items
  
 
-    out.append(random_shop_name[1].strip()) # shop name
-    out.append(generate_coordinates()) # coordinates TODO : make lists with coordinates
+    out.append(shop_name.strip()) # shop name
+    out.append(coordinates.strip()) # shop coordinates
     out.append(generate_random_datetime(min_time=min_time,max_time=max_time)) # time
-    out.append(item) 
-    out.append(brand)
+    out.append(item.strip()) 
+    out.append(brand.strip())
     out.append(generate_one_card_2(bank=bank,pay_system=painment_sys)) # card generation
     out.append(amount)
     out.append((price) * amount)
-    
-    return outs
+    return out
 
 def write_into_csv_file(sample):
     # Названия столбцов
@@ -186,9 +158,9 @@ def write_into_csv_file(sample):
     file_exists = os.path.isfile('output/result.csv')
     
     # Открываем CSV файл для записи или создания
-    with open('output/result.csv', mode='a', newline='', encoding='utf-8') as out_csv:
+    with open('output/result.csv', mode='a', newline='', encoding='utf-8-sig') as out_csv:
         # Создаем объект writer
-        writer = csv.writer(out_csv, delimiter=',')
+        writer = csv.writer(out_csv, delimiter=';', quoting=csv.QUOTE_MINIMAL)
         
         # Если файл не существует, записываем заголовки
         if not file_exists:
@@ -338,5 +310,4 @@ if __name__ == '__main__':
     btn.place(relx=0.95, rely=0.95, anchor="se", width=150) 
 
     window.mainloop()
-    # TODO : сломаны категории (колбаса Milka), all type тоже сломано
     
